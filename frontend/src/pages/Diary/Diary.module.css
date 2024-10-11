@@ -1,0 +1,24 @@
+.backgroundContainer {
+    background-size: 450px, contain, 280px, contain;
+    background-position: 95% 40%;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+    .backgroundContainer {
+      background-size: 400px;
+      background-position: 90% 85%;
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .backgroundContainer {
+      background-color: none;
+    }
+  }
+  

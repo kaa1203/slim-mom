@@ -1,29 +1,109 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { SharedLayout } from './SharedLayout/SharedLayout';
-import { Homepage } from 'pages/Home/Homepage';
-import { DiaryPage } from 'pages/Diary/DiaryPage';
-import { CalculatorPage } from 'pages/Calculator/CalculatorPage';
-import { LoginPage } from 'pages/Login/LoginPage';
-import { RegistrationPage } from 'pages/Registration/RegistrationPage';
-import { PageNotFound } from 'pages/PageNotFound/PageNotFound';
+import {
+  Routes,
+  Route,
+  // Navigate
+} from 'react-router-dom';
+import { Home } from 'pages/Home';
+import { Layout } from './Layout/Layout';
+import { Suspense, useEffect, lazy, useContext } from 'react';
+// import { Loader } from './Loader/Loader';
+import { LoaderNew } from './LoaderNew/LoaderNew';
+import { useDispatch, useSelector } from 'react-redux';
+import { getToken } from 'redux/authSelectors';
+import { useGetUserQuery } from 'redux/auth';
+import { setCurrentUser } from 'redux/authSlice';
+import { PrivateRoute } from './Routes/PrivateRoute';
+import { PublicRoute } from './Routes/PublicRoute';
+import { ThemeProvider } from 'styled-components';
+import { theme, christmasTheme } from './Theme/Theme';
+import { ThemeContext } from './Context/Context';
+import { DesktopApp } from './DesktopApp/DesktopApp';
 
-function App() {
+const Login = lazy(() => import('../pages/LoginPage'));
+const Register = lazy(() => import('../pages/RegisterPage'));
+const Diary = lazy(() => import('../pages/DiaryPage'));
+const Calculator = lazy(() => import('../pages/CalculatorPage'));
+const NotFound = lazy(() => import('../pages/NotFound'));
+
+export const App = () => {
+  const { isChristmas } = useContext(ThemeContext);
+  const dailyRate = useSelector(state => state.auth.userInfo.dailyRate);
+
+  const dispatch = useDispatch();
+  const token = useSelector(getToken);
+
+  const mockQuery = '';
+  const { data } = useGetUserQuery(mockQuery, { skip: !token });
+
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+    if (dailyRate) {
+      return;
+    }
+
+    dispatch(setCurrentUser(data));
+  }, [dailyRate, data, dispatch]);
+
   return (
-    <Routes>
-		<Route>
-			<Route path='/' element={ <SharedLayout />}>
-				<Route path='/' index element={ <Homepage />} />
-				<Route path='/diary' element={ <DiaryPage />} />
-				<Route path='/calculator' element={ <CalculatorPage />} />
-				<Route path='/login' element={ <LoginPage />} />
-				<Route path='/registration' element={ <RegistrationPage />} />
-				<Route path='*' element={ <PageNotFound />} />
-			</Route>
-		</Route>
-	 </Routes>
-    
+    <ThemeProvider theme={isChristmas ? christmasTheme : theme}>
+      <Suspense fallback={<LoaderNew />}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            {/* <Route index element={<Navigate to="home" />} /> */}
+            <Route
+              index
+              element={
+                <PublicRoute restricted>
+                  <Home />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute restricted>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute restricted>
+                  <Register />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="diary"
+              element={
+                <PrivateRoute>
+                  <Diary />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="calculator"
+              element={
+                <PrivateRoute>
+                  <Calculator />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="desktop"
+              element={
+                <PrivateRoute>
+                  <DesktopApp />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </ThemeProvider>
   );
-}
-
-export default App;
+};

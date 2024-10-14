@@ -1,61 +1,65 @@
 @import-normalize; /* bring in normalize.css styles */
 
-:root {
-	--black: #212121;
-	--grey: #9B9FAA;
-	--grey-transparent: #E0E0E0;
-	--orange: #FC842D;
-	--dark-blue: #264061;
-	--overlay: #2121211F;
-	--white: #ffffff
+@font-face {
+  font-family: 'GothamProBold';
+  src: local('GothamProBold'),
+    url('./fonts/GothamPro-Bold.ttf') format('truetype');
+  font-weight: bold;
 }
-
-*:focus {
-	outline: none;
+@font-face {
+  font-family: 'GothamProLight';
+  src: local('GothamProLight'),
+    url('./fonts/GothamPro-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'VerdanaBold';
+  src: local('VerdanaBold'), url('./fonts/Verdana-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'VerdanaRegular';
+  src: local('VerdanaRegular'),
+    url('./fonts/Verdana-Regular.ttf') format('truetype');
+  font-weight: 400;
 }
 
 body {
   margin: 0;
-  font-family: 'Verdana', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: VerdanaBold;
+  box-sizing: border-box;
+}
+body.christmas {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 }
 
-html {
-	box-sizing: border-box;
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-h1,h2,h3,h4,h5,h6,p {
-	font-size: inherit;
-	font-weight: normal;
-	font-style: normal;
-	margin: 0;
-	padding: 0;
-}
- 
-*, *:before, *:after {
-	box-sizing: inherit;
-}
-
-img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-a {
-	text-decoration: none;
-}
-
 ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(0deg, rgb(212, 186, 171), rgb(70, 64, 50) 50%);
+  border-radius: 10px;
 }

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-import { useSelector } from 'react-redux';
-import { getLoadingStatus } from 'redux/auth/auth-selector';
+// import { useSelector } from 'react-redux';
+// import { getLoadingStatus } from 'redux/auth/auth-selector';
 import { Loader } from 'components';
 
 import PropTypes from 'prop-types';
 
-import closeIcon from '../../assets/icons/modal-close.svg';
+import closeIcon from '../../icons/Modal-close.svg';
 import s from '../Modal/Modal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');

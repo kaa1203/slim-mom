@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { getDailyIntake, getUserDailyDiet, getLoginStatus } from 'redux/auth/selectors';
-import { updateModalStatus } from 'redux/auth/authSlice';
-import { nanoid } from '@reduxjs/toolkit';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getDailyIntake, getUserDailyDiet, getLoginStatus } from 'redux/auth/selectors';
+// import { updateModalStatus } from 'redux/auth/authSlice';
+// import { nanoid } from '@reduxjs/toolkit';
 
 import s from '../DailyCalorieIntake/DailyCalorieIntake.module.css';
 

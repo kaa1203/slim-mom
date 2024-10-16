@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { getCalorieIntake, getCalorieIntakeForUser } from 'redux/auth/operations';
-import { getLoginStatus, getModalStatus } from 'redux/auth/selectors';
-import { updateModalStatus } from 'redux/auth/authSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getCalorieIntake, getCalorieIntakeForUser } from 'redux/auth/operations';
+// import { getLoginStatus, getModalStatus } from 'redux/auth/selectors';
+// import { updateModalStatus } from 'redux/auth/authSlice';
 
 import { Button, Modal, DailyCalorieIntake } from 'components';
 

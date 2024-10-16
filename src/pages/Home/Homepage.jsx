@@ -4,4 +4,4 @@ export const Homepage = () => {
 	return (
 		<HomeForm />
 	);
-}
+ }

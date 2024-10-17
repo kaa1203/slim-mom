@@ -8,7 +8,7 @@ import {
 } from '../../components/CalculatorPage/CalculatorPage.styled';
 // import { getUserInfo } from 'redux/authSelectors';
 import { useAuth } from 'hooks/useAuth';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import Modal from 'components/Modal/Modal';
 import { RightSideBar } from '../../components/RightSideBar/RightSideBar';
 

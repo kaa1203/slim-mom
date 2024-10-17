@@ -70,31 +70,37 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
   //   bloodType: '1',
   // };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     openModal(true);
-		const form = e.target;
-		const data = {
-			height: form.elements.height.value,
-			age: form.elements.age.value,
-			currentWeight: form.elements.currentWeight.value,
-			desiredWeight: form.elements.desiredWeight.value,
-			bloodType: form.elements.bloodType.value,
-    }
+    const form = e.target;
+    const data = {
+      height: form.elements.height.value,
+      age: form.elements.age.value,
+      currentWeight: form.elements.currentWeight.value,
+      desiredWeight: form.elements.desiredWeight.value,
+      bloodType: form.elements.bloodType.value,
+    };
     setUserParams(data);
-		if (isLoggedIn) return dispatch(caloriePrivate(data));
-		
-    if (!data.height || !data.age || !data.currentWeight || !data.desiredWeight || !data.bloodType) {
+    if (isLoggedIn) dispatch(caloriePrivate(data));
+
+    if (
+      !data.height ||
+      !data.age ||
+      !data.currentWeight ||
+      !data.desiredWeight ||
+      !data.bloodType
+    ) {
       alert('Please fill in all the required fields.');
       return; // Prevent form submission if any field is empty
     }
-		dispatch(caloriePublic(data));
-		form.reset();
+    dispatch(caloriePublic(data));
+    form.reset();
     // const params = { ...values };
     // // schema.validate(params);
     // setUserParams(params);
     // // saveInStor('params', params);
-   
+
     // if(isLogged) {
     //   const {height, age, currentWeight, desiredWeight, bloodType} = params
     //   const data = await apiCalorieIntake(params);
@@ -191,7 +197,7 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
           <li>
             <Paragraph>Blood type *</Paragraph>
             <CheckboxContainer role="group" aria-labelledby="my-radio-group">
-            <Label>
+              <Label>
                 <Checkbox
                   type="radio"
                   name="bloodType"

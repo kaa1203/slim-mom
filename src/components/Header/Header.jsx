@@ -34,13 +34,13 @@ const Header = () => {
             <>
               <NavLink
                 to="/diary"
-                className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+                className={({ isActive }) => (isActive ? css.active : css.inactive)}
               >
                  Diary
               </NavLink>
               <NavLink
                 to="/calculator"
-                className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+                className={({ isActive }) => (isActive ? css.active : css.inactive)}
               >
                 Calculator
               </NavLink>
@@ -49,13 +49,13 @@ const Header = () => {
             <div className={css.nav2}>
               <NavLink
                 to="/login"
-                className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+                className={({ isActive }) => (isActive ? css.active : css.inactive)}
               >
 					 Log in
               </NavLink>
               <NavLink
                 to="/registration"
-                className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+                className={({ isActive }) => (isActive ? css.active : css.inactive)}
               >
                 Registration
               </NavLink>
@@ -80,13 +80,13 @@ const Header = () => {
         <nav className={css.collapsibleMenu}>
           <NavLink
             to="/diary"
-            className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+            className={({ isActive }) => (isActive ? css.active : css.inactive)}
           >
             | Diary
           </NavLink>
           <NavLink
             to="/calculator"
-            className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+            className={({ isActive }) => (isActive ? css.active : css.inactive)}
           >
             Calculator
           </NavLink>

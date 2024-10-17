@@ -6,20 +6,8 @@ import { useDispatch } from 'react-redux';
 import { useSearch } from '../../hooks/useSearch';
 import { searchProducts } from '../../redux/product/productSlice';
 import { DiaryList } from 'components/DiaryList/DiaryList';
-import { fetchEntriesByDate } from '../../redux/entry/operation';
+import { fetchEntriesByDate, addEntry } from '../../redux/entry/operation';
 import { useGetEntry } from '../../hooks/useGetEntry';
-
-const debounce = (fn, duration) => {
-	let timer = null;
-	return function(...args) {
-		if (timer) {
-			clearInterval(timer);
-		}
-		timer = setTimeout(() => {
-			fn.apply(this, args);
-		}, duration)
-	}
-}
 
 const throttle = (fn, delay) => {
 	let lastCall = 0;
@@ -36,8 +24,10 @@ const throttle = (fn, delay) => {
 export const DiaryPage = () => {
    const [searchValue, setSearchValue] = useState('');
 	const [date, setDate] = useState('');
+	const [showDD, setShowDD] = useState(false);
+	const [productDetails, setProductDetails] = useState('');
 
-   const navigate = useNavigate();
+   const navigate = useNavigate();	
    const location = useLocation();
 	const dispatch = useDispatch();
 	const { products, isLoading } = useSearch();
@@ -50,12 +40,16 @@ export const DiaryPage = () => {
 	}, [dispatch])
 
    const handleOnChange = e => {
-      setSearchValue(e.target.value);
+		const query = e.target.value;
       const params = getQueryParams();
-      params.set('q', e.target.value);
+
+		setSearchValue(query);
+      params.set('q', query);
       navigate({ search: params.toString()});
 		
-		throttledSearch(e.target.value);
+		setShowDD(query.length > 0);
+
+		throttledSearch(query);
    };
 
 	const throttledSearch = throttle((search) => {
@@ -69,27 +63,40 @@ export const DiaryPage = () => {
 		dispatch(fetchEntriesByDate(e.target.value));
 	}
 
-	console.log(entry);
+	const handleOnSubmit = e => {
+		e.preventDefault();
+		const form = e.target;
+		const grams = form.elements.grams.value;
+		const data = {...productDetails, grams};
+		dispatch(addEntry(data));
+		setProductDetails('');
+		form.reset();
+	}
 
 	return (
       <>
          <input type="date" onChange={handleDateOnChange}/>
          <br />
 			<div>{date}</div>
-         <div className={css.searchContainer}>
+         <form 
+				className={css.searchForm}
+				onSubmit={handleOnSubmit}
+			>
             <input type="text" 
                placeholder="Enter product name" 
                onChange={handleOnChange}
                value={searchValue}
             />
-            {searchValue &&
+            {showDD &&
                <div className={css.searchResult}>
-						{isLoading && <div>Loading...</div>}
 						{ products && products.length > 0 ? (
 						 products.map(product => (
 							<DiaryList 
 								key={product._id}
 								product={product}
+								setSearchValue={setSearchValue}
+								setShowDD={setShowDD}
+								setProductDetails={setProductDetails}
 							/>
 						)
 						)) : (
@@ -98,9 +105,9 @@ export const DiaryPage = () => {
 						)}
                </div>
             }
-            <input type="text" placeholder="Gram" />
+				<input type='number' name='grams' placeholder='grams' />
             <button>+</button>
-         </div>
+         </form>
       </>
    )
 }

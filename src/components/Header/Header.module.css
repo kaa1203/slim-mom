@@ -84,7 +84,7 @@
 }
 
 .active {
-  color: black;
+	color: black!important;
 }
 
 .inactive {

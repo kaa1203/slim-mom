@@ -1,7 +1,14 @@
 
-export const DiaryList = ({ product }) => {
+export const DiaryList = ({ product, setSearchValue, setShowDD, setProductDetails }) => {
+	
+	const handleOnClick = () => {
+		setSearchValue(product.title);
+		setShowDD(false);
+		setProductDetails(product);
+	}
+
 	return (
-		<div>
+		<div onClick={handleOnClick}>
 			{product.title}
 		</div>
 	);

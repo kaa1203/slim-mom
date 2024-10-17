@@ -1,106 +1,49 @@
-import css from './DiaryPage.module.css';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchProducts } from '../../redux/product/operations';
-import { useDispatch } from 'react-redux';
-import { useSearch } from '../../hooks/useSearch';
-import { searchProducts } from '../../redux/product/productSlice';
-import { DiaryList } from 'components/DiaryList/DiaryList';
-import { fetchEntriesByDate } from '../../redux/entry/operation';
-import { useGetEntry } from '../../hooks/useGetEntry';
+import { Wrapper, WrapperAll } from '../../components/DiaryPage/DiaryPage.styled';
+import { DiaryAddProductForm } from 'components/DiaryAddProductForm/DiaryAddProductForm';
+import { DiaryDateCalendar } from '../../components/DiaryDateCalendar/DiaryDateCalendar';
+import { DiaryProductsList } from '../../components/DiaryProductList/DiaryProductList';
+import { RightSideBar } from 'components/RightSideBar/RightSideBar';
+import React from 'react';
+import { useState } from 'react';
+import { DiaryModal } from 'components/DiaryModal/DiaryModal';
+import { useMediaQuery } from 'react-responsive';
+import { Button } from 'components/DiaryPage/DiaryPage.styled';
+import AddIcon from '../../images/svg/add.svg';
+import { Box } from 'components/Box';
 
-const debounce = (fn, duration) => {
-	let timer = null;
-	return function(...args) {
-		if (timer) {
-			clearInterval(timer);
-		}
-		timer = setTimeout(() => {
-			fn.apply(this, args);
-		}, duration)
-	}
-}
+const body = document.querySelector('body');
 
-const throttle = (fn, delay) => {
-	let lastCall = 0;
-	return function (...args) {
-	  const now = new Date().getTime();
-	  if (now - lastCall < delay) {
-		 return;
-	  }
-	  lastCall = now;
-	  return fn(...args);
-	};
- }
+const DiaryPage = () => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const mobile = useMediaQuery({ query: '(max-width: 426px)' });
 
-export const DiaryPage = () => {
-   const [searchValue, setSearchValue] = useState('');
-	const [date, setDate] = useState('');
+  const onModalOpen = () => {
+    setIsModalOpened(true);
+    body.style.overflow = 'hidden';
+  };
 
-   const navigate = useNavigate();
-   const location = useLocation();
-	const dispatch = useDispatch();
-	const { products, isLoading } = useSearch();
-	const { entry } = useGetEntry();
-	
-   const getQueryParams = () => new URLSearchParams(location.search);
+  const onModalClose = () => {
+    setIsModalOpened(isModalOpened => !isModalOpened);
+    body.style.overflow = 'auto';
+  };
 
-	useEffect(() => {
-		dispatch(fetchProducts(""));
-	}, [dispatch])
-
-   const handleOnChange = e => {
-      setSearchValue(e.target.value);
-      const params = getQueryParams();
-      params.set('q', e.target.value);
-      navigate({ search: params.toString()});
-		
-		throttledSearch(e.target.value);
-   };
-
-	const throttledSearch = throttle((search) => {
-		if (search !== searchValue) {
-			dispatch(searchProducts(search));
-		}
-	}, 1500);
-
-	const handleDateOnChange = e => {
-		setDate(e.target.value);
-		dispatch(fetchEntriesByDate(e.target.value));
-	}
-
-	console.log(entry);
-
-	return (
-      <>
-         <input type="date" onChange={handleDateOnChange}/>
-         <br />
-			<div>{date}</div>
-         <div className={css.searchContainer}>
-            <input type="text" 
-               placeholder="Enter product name" 
-               onChange={handleOnChange}
-               value={searchValue}
-            />
-            {searchValue &&
-               <div className={css.searchResult}>
-						{isLoading && <div>Loading...</div>}
-						{ products && products.length > 0 ? (
-						 products.map(product => (
-							<DiaryList 
-								key={product._id}
-								product={product}
-							/>
-						)
-						)) : (
-							<div>Nothing to show</div>
-
-						)}
-               </div>
-            }
-            <input type="text" placeholder="Gram" />
-            <button>+</button>
-         </div>
-      </>
-   )
-}
+  return (
+    <WrapperAll>
+      <Wrapper>
+        <DiaryDateCalendar />
+        {!mobile && <DiaryAddProductForm />}
+        <Box textAlign="center">
+          <DiaryProductsList />
+          {mobile && (
+            <Button onClick={() => onModalOpen()}>
+              <img src={AddIcon} alt="add product" />
+            </Button>
+          )}
+        </Box>
+        {isModalOpened && <DiaryModal onClose={onModalClose} />}
+      </Wrapper>
+      <RightSideBar />
+    </WrapperAll>
+  );
+};
+export { DiaryPage };

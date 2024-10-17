@@ -13,14 +13,15 @@ import { BottomSection } from './UserInfo/UserInfo';
 import { Menu } from './Navigation/Navigation';
 import { Link } from 'react-router-dom';
 import { StyledLink } from './Header.styled';
-import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { ThemeContext } from 'components/Context/Context';
-import { selectUser } from '../../redux/auth/selectors';
+import { useAuth } from '../../hooks/useAuth';
 
 const Header = () => {
   const [openNavigation, setOpenNavigation] = useState(false);
-  const userName = useSelector(selectUser);
+  const { user } = useAuth();
+  console.log(user);
+  const userName = user?.name || '';
+  console.log(userName);
   const { pathname } = useLocation();
 
   const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });

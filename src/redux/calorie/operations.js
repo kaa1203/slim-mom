@@ -12,21 +12,17 @@ const setAuthHeader = token => {
 export const caloriePublic = createAsyncThunk(
 	'calorie/public',
 	async(
-		{ 
-			height, 
-			currentWeight, 
-			age, 
-			desiredWeight, 
-			bloodType 
-		} , thunkAPI) => {
+    { height, currentWeight, age, desiredWeight, bloodType },
+    thunkAPI
+  ) => {
 		try {
 
 			const res = await axios.post('calorieIntake/public', {
-				height, 
-				currentWeight, 
-				age, 
-				desiredWeight, 
-				bloodType 
+				height,
+				currentWeight,
+				age,
+				desiredWeight,
+        bloodType,
 			});
 			setAuthHeader(res.data.token);
 			return res.data;
@@ -39,23 +35,23 @@ export const caloriePublic = createAsyncThunk(
 export const caloriePrivate = createAsyncThunk(
 	'calorie/public',
 	async(
-		{ 
-			height, 
-			currentWeight, 
-			age, 
-			desiredWeight, 
-			bloodType 
+		{
+			height,
+			currentWeight,
+			age,
+			desiredWeight,
+			bloodType
 		} , thunkAPI) => {
 		try {
 			const state = thunkAPI.getState();
 			const token = state.auth.user.user.token;
 			const res = await axios.post('calorieIntake/private',
 				{
-					height, 
-					currentWeight, 
-					age, 
-					desiredWeight, 
-					bloodType 
+					height,
+					currentWeight,
+					age,
+					desiredWeight,
+          bloodType,
 				},
 				{
 					headers: {

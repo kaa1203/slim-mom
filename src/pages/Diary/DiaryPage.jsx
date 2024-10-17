@@ -8,6 +8,7 @@ import { searchProducts } from '../../redux/product/productSlice';
 import { DiaryList } from 'components/DiaryList/DiaryList';
 import { fetchEntriesByDate } from '../../redux/entry/operation';
 import { useGetEntry } from '../../hooks/useGetEntry';
+import { DiaryModal } from 'components/DiaryModal/DiaryModal'; // Import the modal component
 
 const debounce = (fn, duration) => {
 	let timer = null;
@@ -36,13 +37,15 @@ const throttle = (fn, delay) => {
 export const DiaryPage = () => {
    const [searchValue, setSearchValue] = useState('');
 	const [date, setDate] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [modalData, setModalData] = useState(null); // State for the data to pass to the modal
 
    const navigate = useNavigate();
    const location = useLocation();
 	const dispatch = useDispatch();
 	const { products, isLoading } = useSearch();
 	const { entry } = useGetEntry();
-	
+
    const getQueryParams = () => new URLSearchParams(location.search);
 
 	useEffect(() => {
@@ -54,7 +57,7 @@ export const DiaryPage = () => {
       const params = getQueryParams();
       params.set('q', e.target.value);
       navigate({ search: params.toString()});
-		
+
 		throttledSearch(e.target.value);
    };
 
@@ -77,8 +80,8 @@ export const DiaryPage = () => {
          <br />
 			<div>{date}</div>
          <div className={css.searchContainer}>
-            <input type="text" 
-               placeholder="Enter product name" 
+            <input type="text"
+               placeholder="Enter product name"
                onChange={handleOnChange}
                value={searchValue}
             />
@@ -87,7 +90,7 @@ export const DiaryPage = () => {
 						{isLoading && <div>Loading...</div>}
 						{ products && products.length > 0 ? (
 						 products.map(product => (
-							<DiaryList 
+							<DiaryList
 								key={product._id}
 								product={product}
 							/>
@@ -99,8 +102,10 @@ export const DiaryPage = () => {
                </div>
             }
             <input type="text" placeholder="Gram" />
-            <button>+</button>
+
          </div>
+        {/* Render the modal conditionally */}
+        {isModalOpen && <DiaryModal onClose={() => setIsModalOpen(false)} data={modalData} />}
       </>
-   )
+  )
 }

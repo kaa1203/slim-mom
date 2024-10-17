@@ -4,14 +4,12 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 // import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Error, Input, List } from '../../components/Form/Form.styled';
+import { Input, List } from '../../components/Form/Form.styled';
 import { Button } from '../../components/Button/Button';
 //prettier-ignore
-import { ButtonWrapper, H2, Wrapper } from '../../components/RegisterPage/RegisterPage.styled';
+import { ButtonWrapper, H2, Wrapper, WrapperWithFruits } from '../../components/RegisterPage/RegisterPage.styled';
 // import { ButtonGoogle } from '../components/RegisterPage/RegisterPage.styled';
 import { signin } from '../../redux/auth/operations';
-import { WrapperWithFruits } from '../../components/RegisterPage/RegisterPage.styled';
-import { Loader } from '../../components/Loader/Loader';
 import { routes } from '../../components/Routes/routes';
 
 // const schema = yup.object().shape({

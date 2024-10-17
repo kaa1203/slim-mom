@@ -1,7 +1,7 @@
 .formContainer {
     width: 600px;
-    margin-top: 100px; 
-    margin-left: 20px; 
+    margin-top: 100px;
+    margin-left: 20px;
     position: relative;
 }
 
@@ -71,6 +71,10 @@
     border-radius: 50%;
 }
 
+.radioContainer .label:has(input:checked)::before {
+  background-color: var(--orange);
+}
+
 span::after {
     content: '';
     display: block;
@@ -117,5 +121,5 @@ span {
     color: var(--white);
     background-color: var(--orange);
     cursor: pointer;
-    box-shadow: 0px 3px 8px 2px #FC842D80;
+  box-shadow: 0px 3px 8px 2px #fc842d80;
 }

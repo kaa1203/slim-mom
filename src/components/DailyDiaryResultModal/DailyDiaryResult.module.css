@@ -1,0 +1,112 @@
+/* ModalStyles.module.css */
+
+.modalWrapper {
+  position: relative;
+  border-radius: 10px;
+  padding-top: 64px;
+  padding-bottom: 80px;
+  flex-wrap: wrap;
+  background-color: #fff;
+  text-align: center;
+}
+
+@media (min-width: 426px) {
+  .modalWrapper {
+    overflow: hidden;
+  }
+}
+
+.title {
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 426px) {
+  .h2 {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+}
+
+.calorie {
+  font-size: 40px;
+  line-height: 1.4;
+  margin-bottom: 24px;
+  color: #264061;
+}
+
+@media (min-width: 426px) {
+  .h1 {
+    font-size: 42px;
+    margin-bottom: 28px;
+  }
+}
+
+@media (min-width: 768px) {
+  .h1 {
+    font-size: 48px;
+    margin-bottom: 32px;
+  }
+}
+
+.foods {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.listOfProd {
+  margin: 0 auto;
+  max-width: 326px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+box {
+  color: #9b9faa;
+  padding: 0 0 0 30px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.buttonWrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .buttonWrapper {
+    justify-content: flex-start;
+    display: inline-block;
+    position: relative;
+  }
+}
+
+.buttonForm {
+  padding: 13px 25px;
+  border-radius: 30px;
+  border: none; /* Adjust if you have a theme border */
+  font-family: inherit; /* You can set this to your theme font */
+  line-height: 1.5; /* Adjust if needed */
+  font-size: 16px; /* Set a default font size */
+  letter-spacing: 0.04em;
+  display: block;
+  cursor: pointer;
+  color: white; /* Set to your theme color */
+  background: #f5a623; /* Set to your theme color */
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+}
+
+.buttonForm:hover,
+.buttonForm:focus {
+  background: #e59400; /* Set to your theme hover color */
+}

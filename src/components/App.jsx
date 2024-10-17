@@ -1,6 +1,5 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { Homepage } from 'pages/Home/Homepage';
 import { DiaryPage } from 'pages/Diary/DiaryPage';
@@ -10,11 +9,23 @@ import { RegistrationPage } from 'pages/Registration/RegistrationPage';
 import { PageNotFound } from 'pages/PageNotFound/PageNotFound';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
-import { theme } from './Theme/Theme';
+import { routes } from './Routes/routes.js';
 
 function App() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [userParams, setUserParams] = useState(null); // Replace with appropriate initial state
+
+  const openDiaryModal = data => {
+    // Set userParams based on your logic here
+    setUserParams(`{ age: {age} height: {height} weight:{weight}}`); // Example params
+    setModalOpen(true);
+  };
+
+  const closeDiaryModal = () => {
+    setModalOpen(false);
+  };
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Routes>
         <Route>
           <Route path="/" element={<SharedLayout />}>
@@ -29,13 +40,13 @@ function App() {
               }
             />
             <Route
-              path="/diary"
+              path={routes.diary}
               element={
                 <PrivateRoute redirectTo="/login" component={DiaryPage} />
               }
             />
             <Route
-              path="/calculator"
+              path={routes.calculator}
               element={
                 <PrivateRoute redirectTo="/login" component={CalculatorPage} />
               }
@@ -51,7 +62,10 @@ function App() {
           </Route>
         </Route>
       </Routes>
-    </ThemeProvider>
+      {/*{isModalOpen && (*/}
+      {/*  <DiaryModal onClose={closeDiaryModal} userParams={userParams} />*/}
+      {/*)}*/}
+    </>
   );
 }
 

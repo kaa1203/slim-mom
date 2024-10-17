@@ -4,13 +4,26 @@ import { useDispatch } from 'react-redux';
 import { caloriePublic, caloriePrivate } from '../../redux/calorie/operations';
 import { useAuth } from '../../hooks/useAuth';
 import { useGetCalorieIntake } from '../../hooks/useGetCalorieIntake';
+import { DiaryModal } from '../DiaryModal/DiaryModal';
 
 export const HomeForm = () => {
 	const [selectedRadio, setSelectedRadio] = useState(1);
+  const [response, setResponse] = useState();
 
 	const dispatch = useDispatch();
 	const { isLoggedIn } = useAuth();
 	const { result } = useGetCalorieIntake();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Function to open the modal
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
 	const radios = [
 		{ id: 1, label: 'radioOne'},
@@ -18,12 +31,12 @@ export const HomeForm = () => {
 		{ id: 3, label: 'radioThree'},
 		{ id: 4, label: 'radioFour'},
 	];
-	
+
 	const handleOnChange = e => {
 		setSelectedRadio(Number(e.target.value));
-	}
+  }
 
-	const handleOnSubmit = e => {
+	const handleOnSubmit = async(e) =>  {
 		e.preventDefault();
 		const form = e.target;
 		const data = {
@@ -34,8 +47,11 @@ export const HomeForm = () => {
 			bloodType: form.elements.bloodType.value,
 		}
 		if (isLoggedIn) return dispatch(caloriePrivate(data));
-		
-		dispatch(caloriePublic(data));
+
+		const resp = await dispatch(caloriePublic(data));
+    console.log(resp)
+    setResponse(resp)
+    setIsModalOpen(true);
 		form.reset();
 	}
 	console.log(result);
@@ -63,16 +79,16 @@ export const HomeForm = () => {
 						<div className={css.radioContainer}>
 							{
 								radios.map(radio => (
-									<label 
+									<label
 										className={css.label}
 										key={radio.label}
 									>
-										<input 
-											type='radio' 
-											className={css.radio} 
+										<input
+											type='radio'
+											className={css.radio}
 											name='bloodType'
-											id={radio.id} 
-											value={radio.id} 
+											id={radio.id}
+											value={radio.id}
 											checked={ selectedRadio === radio.id }
 											onChange={ handleOnChange }
 										/>
@@ -89,6 +105,8 @@ export const HomeForm = () => {
 				</div>
 				<button type='submit' className={css.button}>Start losing weight</button>
 			</form>
+
+      {isModalOpen && <DiaryModal onClose={closeModal} data={response} />}
 		</div>
 	);
 }

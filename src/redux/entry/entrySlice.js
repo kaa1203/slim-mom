@@ -39,7 +39,7 @@ const entrySlice = createSlice({
 			})
 			.addCase(fetchAllEntries.rejected, handleOnPending)
 			.addCase(fetchAllEntries.fulfilled, (state, action) => {
-
+				console.log(action.payload);
 			})
 			.addCase(fetchAllEntries.rejected, handleOnReject);
 	}

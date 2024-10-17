@@ -7,7 +7,7 @@ import { useSearch } from '../../hooks/useSearch';
 import { searchProducts } from '../../redux/product/productSlice';
 import { DiaryList } from 'components/DiaryList/DiaryList';
 import { fetchEntriesByDate, addEntry } from '../../redux/entry/operation';
-import { useGetEntry } from '../../hooks/useGetEntry';
+// import { useGetEntry } from '../../hooks/useGetEntry';
 
 const throttle = (fn, delay) => {
 	let lastCall = 0;
@@ -30,8 +30,8 @@ export const DiaryPage = () => {
    const navigate = useNavigate();	
    const location = useLocation();
 	const dispatch = useDispatch();
-	const { products, isLoading } = useSearch();
-	const { entry } = useGetEntry();
+	const { products } = useSearch();
+	// const { entry } = useGetEntry();
 	
    const getQueryParams = () => new URLSearchParams(location.search);
 

@@ -37,6 +37,11 @@ const entrySlice = createSlice({
 			.addCase(deleteEntry.fulfilled, (state, action) => {
 				console.log(action.payload);
 			})
+			.addCase(fetchAllEntries.rejected, handleOnPending)
+			.addCase(fetchAllEntries.fulfilled, (state, action) => {
+
+			})
+			.addCase(fetchAllEntries.rejected, handleOnReject);
 	}
 });
 

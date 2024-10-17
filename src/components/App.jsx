@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { Homepage } from 'pages/Home/Homepage';
+import { HomePage } from 'pages/Home/HomePage';
 import { DiaryPage } from 'pages/Diary/DiaryPage';
 import { CalculatorPage } from 'pages/Calculator/CalculatorPage';
 import { LoginPage } from 'pages/Login/LoginPage';
@@ -24,7 +24,7 @@ function App() {
               element={
                 <RestrictedRoute
                   redirectTo="/calculator"
-                  component={Homepage}
+                  component={HomePage}
                 />
               }
             />

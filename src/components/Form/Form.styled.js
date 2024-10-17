@@ -1,4 +1,3 @@
-import { Field } from 'formik';
 import styled from 'styled-components';
 
 export const Input = styled.input`
@@ -64,7 +63,7 @@ export const Paragraph = styled.p`
   }
 `;
 
-export const Checkbox = styled(Field)`
+export const Checkbox = styled.input`
   width: 20px;
   height: 20px;
   margin-right: 8px;

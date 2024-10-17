@@ -60,7 +60,7 @@ export const HomePage = () => {
 
   return (
     <WrapperWithFruits>
-      <Box width={'1280px'} m={'0 auto'}>
+      <Box style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {isModalOpened && <Modal onClose={onModalClose} userParams={userParams} />}
         <H2>Calculate your daily calorie intake right now</H2>
         <WeightForm

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { Formik, ErrorMessage, Form } from 'formik';
 import { useMediaQuery } from 'react-responsive';
 // import * as yup from 'yup';
@@ -60,6 +60,7 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
   const { isLoggedIn } = useAuth();
   // const token = useSelector(selectToken);
   const dispatch = useDispatch();
+  const [bloodType, setBloodType] = useState('1'); // State to manage selected radio button
 
   // const startValues = {
   //   height: '',
@@ -83,6 +84,10 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
     setUserParams(data);
 		if (isLoggedIn) return dispatch(caloriePrivate(data));
 		
+    if (!data.height || !data.age || !data.currentWeight || !data.desiredWeight || !data.bloodType) {
+      alert('Please fill in all the required fields.');
+      return; // Prevent form submission if any field is empty
+    }
 		dispatch(caloriePublic(data));
 		form.reset();
     // const params = { ...values };
@@ -186,17 +191,45 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
           <li>
             <Paragraph>Blood type *</Paragraph>
             <CheckboxContainer role="group" aria-labelledby="my-radio-group">
-              <Label>
-                <Checkbox type="radio" name="bloodType" value="1" checked />1
+            <Label>
+                <Checkbox
+                  type="radio"
+                  name="bloodType"
+                  value="1"
+                  checked={bloodType === '1'}
+                  onChange={() => setBloodType('1')}
+                />
+                1
               </Label>
               <Label>
-                <Checkbox type="radio" name="bloodType" value="2" />2
+                <Checkbox
+                  type="radio"
+                  name="bloodType"
+                  value="2"
+                  checked={bloodType === '2'}
+                  onChange={() => setBloodType('2')}
+                />
+                2
               </Label>
               <Label>
-                <Checkbox type="radio" name="bloodType" value="3" />3
+                <Checkbox
+                  type="radio"
+                  name="bloodType"
+                  value="3"
+                  checked={bloodType === '3'}
+                  onChange={() => setBloodType('3')}
+                />
+                3
               </Label>
               <Label>
-                <Checkbox type="radio" name="bloodType" value="4" />4
+                <Checkbox
+                  type="radio"
+                  name="bloodType"
+                  value="4"
+                  checked={bloodType === '4'}
+                  onChange={() => setBloodType('4')}
+                />
+                4
               </Label>
             </CheckboxContainer>
           </li>

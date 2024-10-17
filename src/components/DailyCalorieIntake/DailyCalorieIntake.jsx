@@ -17,8 +17,8 @@ const DailyCalorieIntake = ({ backResponse, userParams }) => {
   const location = useLocation();
   // const result = useSelector(selectCalorie);
   // console.log(result);
-  const dailyRate = backResponse.calorieIntake;
-  const notAllowedProducts = backResponse.foodsToAvoid;
+  const dailyRate = backResponse?.calorieIntake ?? 'N/A'; // Default to 'N/A' if null or undefined
+  const notAllowedProducts = backResponse?.foodsToAvoid ?? []; // Default to an empty array if null or undefined
   const userDataForRegister = { ...userParams, ...backResponse };
 
   const calories = {

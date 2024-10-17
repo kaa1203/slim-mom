@@ -14,7 +14,7 @@ const handleOnReject = (state, action) => {
 const calorieSlice = createSlice({
 	name: 'calorie',
 	initialState: {
-		items: [],
+		items: {},
 		isLoading: false,
 		isError: null
 	},

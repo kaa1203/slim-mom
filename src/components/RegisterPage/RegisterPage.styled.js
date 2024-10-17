@@ -124,7 +124,7 @@ export const Wrapper = styled.div`
   }
   @media (min-width: 1024px) {
     margin: 0 auto;
-    width: 1280px;
+    max-width: 1280px;
     padding: 306px 16px 179px;
   }
 `;

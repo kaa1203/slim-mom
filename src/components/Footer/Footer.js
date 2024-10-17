@@ -1,6 +1,8 @@
+import React from 'react'; // Import React at the top
 import { Link } from 'react-router-dom';
 import s from './Footer.module.css';
 // import 'animate.css';
+
 const Footer = () => {
   return (
     <footer className={s.footer}>

@@ -1,10 +1,8 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react'; // Ensure React is in scope
 import { createPortal } from 'react-dom';
-
-// import { useSelector } from 'react-redux';
-// import { getLoadingStatus } from 'redux/auth/auth-selector';
-import { Loader } from 'components';
-
+import { useSelector } from 'react-redux'; // Import useSelector
+import { getLoadingStatus } from '../../redux/auth/authSelector'; // Import getLoadingStatus
+import Loader from '../Loader/Loader'; // Default import
 import PropTypes from 'prop-types';
 
 import closeIcon from '../../icons/Modal-close.svg';
@@ -13,7 +11,7 @@ import s from '../Modal/Modal.module.css';
 const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal({ onClose, component }) {
-  const isLoading = useSelector(getLoadingStatus);
+  const isLoading = useSelector(getLoadingStatus); // Use the selector to get loading status
 
   useEffect(() => {
     const handleKeyDown = event => {

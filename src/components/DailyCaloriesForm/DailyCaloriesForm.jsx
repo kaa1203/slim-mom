@@ -1,14 +1,13 @@
-import { useState } from 'react';
-
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getCalorieIntake, getCalorieIntakeForUser } from 'redux/auth/operations';
-// import { getLoginStatus, getModalStatus } from 'redux/auth/selectors';
-// import { updateModalStatus } from 'redux/auth/authSlice';
-
-import { Button, Modal, DailyCalorieIntake } from 'components';
-
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCalorieIntake, getCalorieIntakeForUser } from '../../redux/auth/authOperations';
+import { getLoginStatus, getModalStatus } from '../../redux/auth/authSelector';
+import { updateModalStatus } from '../../redux/auth/authSlice';
+import Button from '../Button/Button'; // Adjust this path as needed
+import Modal from '../Modal/Modal'; // Adjust this path as needed
+import DailyCalorieIntake from '../DailyCalorieIntake/DailyCalorieIntake'; // Adjust this path as needed
 import { toast } from 'react-toastify';
-import s from '../DailyCaloriesForm/DailyCaloriesForm.module.css';
+import s from './DailyCaloriesForm.module.css'; // Adjusted path to module CSS if necessary
 
 export default function DailyCaloriesForm() {
   const dispatch = useDispatch();
@@ -70,17 +69,8 @@ export default function DailyCaloriesForm() {
         break;
 
       case 'firstType':
-        setBloodType(isButtonChecked);
-        break;
-
       case 'secondType':
-        setBloodType(isButtonChecked);
-        break;
-
       case 'thirdType':
-        setBloodType(isButtonChecked);
-        break;
-
       case 'fourthType':
         setBloodType(isButtonChecked);
         break;
@@ -94,7 +84,7 @@ export default function DailyCaloriesForm() {
     event.preventDefault();
 
     if (bloodType === '') {
-      return toast.warn('Please сhoose your blood type');
+      return toast.warn('Please choose your blood type');
     } else {
       resetForm();
       dispatchForm();
@@ -179,7 +169,6 @@ export default function DailyCaloriesForm() {
                 checked={bloodType === '1'}
                 value={1}
               />
-
               <span className={s.numbers}>1</span>
             </label>
             <label className={s.labelRadio}>
@@ -191,7 +180,6 @@ export default function DailyCaloriesForm() {
                 checked={bloodType === '2'}
                 value={2}
               />
-
               <span className={s.numbers}>2</span>
             </label>
             <label className={s.labelRadio}>
@@ -203,7 +191,6 @@ export default function DailyCaloriesForm() {
                 checked={bloodType === '3'}
                 value={3}
               />
-
               <span className={s.numbers}>3</span>
             </label>
             <label className={s.labelRadio}>
@@ -215,7 +202,6 @@ export default function DailyCaloriesForm() {
                 checked={bloodType === '4'}
                 value={4}
               />
-
               <span className={s.numbers}>4</span>
             </label>
           </div>

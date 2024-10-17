@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // Ensure React is imported
 import { useSelector, useDispatch } from 'react-redux';
-
-import { getDailyMeals } from 'redux/products/products-operations';
-import { DiaryDateСalendar } from '../';
+import { getDailyMeals } from '../../redux/products/products-operations';
+import DiaryDateСalendar from '../DiaryDateCalendar/DiaryDateCalendar'; // Adjust this path as necessary
 import categories from '../../categories.json';
 import s from './SideBar.module.css';
 
@@ -115,7 +114,6 @@ const SideBar = () => {
               ))}
             </ul>
           )}
-
           {noInfo && <p>Your diet will be displayed here</p>}
         </section>
       </div>

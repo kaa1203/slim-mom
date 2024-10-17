@@ -1,3 +1,4 @@
+import React from 'react'; // Ensure React is in scope
 import PropTypes from 'prop-types';
 
 import s from '../Button/Button.module.css';

@@ -46,7 +46,7 @@
 
   .sidebar {
     /* background */
-    background-image: url(../../assets/png/backgroundDiaryTab_x1.png);
+    background-image: url(../../png/backgroundDiaryTab_x1.png);
     background-repeat: no-repeat;
     background-position: 100% 100%;
     background-size: 369px 338px;
@@ -58,7 +58,7 @@
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
     .sidebar {
-      background-image: url(../../assets/png/backgroundDiaryTab_x2.png);
+      background-image: url(../../png/backgroundDiaryTab_x2.png);
     }
   }
 }

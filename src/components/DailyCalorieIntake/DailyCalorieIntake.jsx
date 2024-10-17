@@ -1,19 +1,19 @@
+import React from 'react'; // Ensure React is in scope
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'; // Import hooks from redux
+import { getDailyIntake, getUserDailyDiet, getLoginStatus } from '../../redux/auth/authSelector'; // Correct path to selectors
+import { updateModalStatus } from '../../redux/auth/authSlice'; // Correct path to authSlice
+import { nanoid } from '@reduxjs/toolkit'; // Import nanoid
 
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getDailyIntake, getUserDailyDiet, getLoginStatus } from 'redux/auth/selectors';
-// import { updateModalStatus } from 'redux/auth/authSlice';
-// import { nanoid } from '@reduxjs/toolkit';
-
-import s from '../DailyCalorieIntake/DailyCalorieIntake.module.css';
+import s from './DailyCalorieIntake.module.css'; // Update the path if necessary
 
 export default function DailyCalorieIntake() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Use the dispatch hook
 
-  const isLoggedIn = useSelector(getLoginStatus);
-  const navigateTo = isLoggedIn ? '/diary' : '/registration';
-  const getDiet = isLoggedIn ? getUserDailyDiet : getDailyIntake;
-  const dailyDiet = useSelector(getDiet);
+  const isLoggedIn = useSelector(getLoginStatus); // Get login status from state
+  const navigateTo = isLoggedIn ? '/diary' : '/registration'; // Determine navigation path
+  const getDiet = isLoggedIn ? getUserDailyDiet : getDailyIntake; // Choose the selector based on login status
+  const dailyDiet = useSelector(getDiet); // Get daily diet based on the selected function
 
   const productsNotAllowed = dailyDiet?.notAllowedProduct?.map(el => (
     <li key={nanoid()} className={s.item}>
@@ -33,7 +33,7 @@ export default function DailyCalorieIntake() {
         className={s.navLink}
         to={navigateTo}
         onClick={() => {
-          dispatch(updateModalStatus(false));
+          dispatch(updateModalStatus(false)); // Dispatch action to update modal status
         }}
       >
         Start losing weight

@@ -1,6 +1,10 @@
-import useWindowDimensions from '../../services/hooks/useWindowDimensions';
+import React from 'react'; // Ensure this import is present
+import useWindowDimensions from '../../services/hooks/useWindowDimensions.js'; // Add the .js extension
 import s from './CalculatorPage.module.css';
-import { DailyCaloriesForm, SideBar, Container, Footer } from 'components';
+import DailyCaloriesForm from '../../components/DailyCaloriesForm/DailyCaloriesForm.jsx'; // Add the .jsx extension
+import SideBar from '../../components/SideBar/SideBar.jsx';
+import Container from '../../components/Container/Container.jsx';
+import Footer from '../../components/Footer/Footer.js';
 
 const CalculatorPage = () => {
   const { width } = useWindowDimensions();
@@ -24,18 +28,16 @@ const CalculatorPage = () => {
         </main>
       )}
       {width > 1279 && (
-        <>
-          <Container>
-            <main className={s.section}>
-              <h3 className="visually-hidden">Calculator Page</h3>
-              <div className={s.calculator}>
-                <DailyCaloriesForm />
-              </div>
-              <SideBar />
-            </main>
-            <Footer />
-          </Container>
-        </>
+        <Container>
+          <main className={s.section}>
+            <h3 className="visually-hidden">Calculator Page</h3>
+            <div className={s.calculator}>
+              <DailyCaloriesForm />
+            </div>
+            <SideBar />
+          </main>
+          <Footer />
+        </Container>
       )}
     </>
   );

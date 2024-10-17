@@ -7,11 +7,11 @@ export const Menu = ({ setOpenNavigation }) => {
   };
   return (
     <Nav>
-      <StyledLink to="calculator" onClick={handleClick}>
-        Calculator
-      </StyledLink>
       <StyledLink to="diary" onClick={handleClick}>
         Diary
+      </StyledLink>
+      <StyledLink to="calculator" onClick={handleClick}>
+        Calculator
       </StyledLink>
     </Nav>
   );

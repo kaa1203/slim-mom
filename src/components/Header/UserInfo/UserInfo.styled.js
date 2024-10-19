@@ -10,7 +10,7 @@ export const Section = styled.div`
     position: relative; // set position relative in order to see user section when modal on phone is opened
     z-index: 21;
   }
-  @media (min-width: 426px) and (max-width: 1023px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     background: transparent;
     margin-left: auto;
     margin-right: 48px;

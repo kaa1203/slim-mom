@@ -1,0 +1,165 @@
+/* .header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-left: 16px;
+  margin-right: 20px;
+}
+
+.logo {
+	position: relative;
+}
+
+.logo::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 60%;
+	left: 108%;
+	width: 2px;
+	height: 32px;
+	background-color: var(--grey-transparent);
+}
+
+.nav {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 25px;
+  text-transform: uppercase;
+  margin: 0px 24px;
+}
+
+.nav a {
+  color: var(--grey);
+  display: flex;
+  align-items: flex-start;
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17.01px;
+  letter-spacing: 0.04em;
+}
+
+.nav2 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 25px;
+  text-transform: uppercase;
+}
+
+.rightSection {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  text-transform: uppercase;
+  margin-right: 20px;
+  color: #9b9faa;
+  font-family: Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17.01px;
+  letter-spacing: 0.04em;
+}
+
+.rightSection a {
+  color: #9b9faa;
+}
+
+.leftSection {
+  display: flex;
+  align-items: baseline;
+}
+
+.rightSection {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.rightSection a {
+  color: #9b9faa;
+}
+
+.active {
+	color: black!important;
+}
+
+.inactive {
+  color: #9b9faa;
+} */
+
+/* Burger Menu Icon */
+/* .burger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.burgerIcon {
+  width: 25px;
+  height: 2px;
+  background-color: #333;
+  display: block;
+  position: relative;
+}
+
+.burgerIcon::before,
+.burgerIcon::after {
+  content: '';
+  width: 25px;
+  height: 2px;
+  background-color: #333;
+  position: absolute;
+  left: 0;
+}
+
+.burgerIcon::before {
+  top: -8px;
+}
+
+.burgerIcon::after {
+  bottom: -8px;
+} */
+
+/* Tablet Style */
+/* @media (max-width: 768px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    border-top: 1px solid #ccc;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav2.open {
+    display: flex;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .collapsibleMenu {
+    display: flex;
+  }
+}
+
+/* Mobile styles */
+/* @media (max-width: 480px) {
+  .nav2 {
+    display: inline-block;
+    align-items: flex-end;
+  }
+} */

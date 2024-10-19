@@ -13,7 +13,7 @@ export const HeaderStyled = styled.header`
     position: relative; // set position relative in order to see header when modal on phone is opened
     z-index: 22;
   }
-  @media (min-width: 426px) and (max-width: 1023px) {
+  @media (min-width: 768px) {
     padding: 20px 32px;
     /* width: calc(100% - 32px); */
   }
@@ -101,12 +101,11 @@ export const StyledLink = styled(NavLink)`
   text-decoration: none;
 
   &:hover,
-  &:focus {
-    color: #212121;
-  }
+  &:focus,
   &.active {
     color: #212121;
   }
+
   @media (min-width: 426px) and (max-width: 1023px) {
   }
   @media (min-width: 1024px) {

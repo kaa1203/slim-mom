@@ -1,4 +1,7 @@
-import { Wrapper, WrapperAll } from '../../components/DiaryPage/DiaryPage.styled';
+import {
+  Wrapper,
+  WrapperAll,
+} from '../../components/DiaryPage/DiaryPage.styled';
 import { DiaryAddProductForm } from 'components/DiaryAddProductForm/DiaryAddProductForm';
 import { DiaryDateCalendar } from '../../components/DiaryDateCalendar/DiaryDateCalendar';
 import { DiaryProductsList } from '../../components/DiaryProductList/DiaryProductList';
@@ -31,7 +34,7 @@ const DiaryPage = () => {
       <Wrapper>
         <DiaryDateCalendar />
         {!mobile && <DiaryAddProductForm />}
-        <Box textAlign="center">
+        <Box style={{textAlign:'center'}}>
           <DiaryProductsList />
           {mobile && (
             <Button onClick={() => onModalOpen()}>

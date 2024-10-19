@@ -32,7 +32,7 @@ export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
   // const { user } = useAuth();
   // const token = user.token;
   // const dispatch = useDispatch();
-//   const date = useSelector(selectDate);
+  //   const date = useSelector(selectDate);
   const mobile = useMediaQuery({ query: '(max-width: 426px)' });
   const initialValues = {
     productName: '',
@@ -88,7 +88,7 @@ export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
   // };
 
   return (
-    <Box position="relative" my="40px">
+    <Box style={{position:'relative'}}>
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
@@ -97,7 +97,7 @@ export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
       >
         {({ formikProps, setFieldValue }) => (
           <Box>
-            <FormWrapper >
+            <FormWrapper>
               <NameInput
                 type="productName"
                 placeholder="Enter product name"

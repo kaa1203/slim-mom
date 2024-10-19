@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-// import * as yup from 'yup';
-// import { Error, Input, List } from 'components/Form/Form.styled';
 import { Input, List } from 'components/Form/Form.styled';
 import { Button } from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';

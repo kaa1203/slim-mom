@@ -23,24 +23,28 @@ const Header = () => {
   const { pathname } = useLocation();
 
   const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
-  const isMobile = useMediaQuery({ query: '(max-width: 426px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({
-    query: '(min-width: 426px) and (max-width: 1023px)',
+    query: '(max-width: 1023px)',
   });
   const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
   const takeLogo = () => {
-    if (isMobile) {
-      return logoMobile;
-    } else if (isTablet) {
-      return logoTablet;
-    } else if (isDesktop) {
-      return logoDesktop;
-    } else if (isMobile && isRetina) {
-      return logoMobileRetina;
-    } else if (isTablet && isRetina) {
-      return logoTabletRetina;
-    } else if (isDesktop && isRetina) {
-      return logoDesktopRetina;
+    if (isRetina) {
+      if (isMobile) {
+        return logoMobileRetina;
+      } else if (isTablet) {
+        return logoTabletRetina;
+      } else if (isDesktop) {
+        return logoDesktopRetina;
+      }
+    } else {
+      if (isMobile) {
+        return logoMobile;
+      } else if (isTablet) {
+        return logoTablet;
+      } else if (isDesktop) {
+        return logoDesktop;
+      }
     }
   };
 

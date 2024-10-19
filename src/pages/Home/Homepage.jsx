@@ -1,4 +1,4 @@
-import { H2, WrapperWithFruits } from '../../components/Home/Home.styled';
+import { H2, WrapperWithFruits } from './HomePage.styled.js';
 import { WeightForm } from '../../components/Form/Form';
 import React from 'react';
 import { Box } from 'components/Box';

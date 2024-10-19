@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const BASE_URL = 'https://slim-mom-api.onrender.com/api/';
 
@@ -29,7 +29,7 @@ export const signin = createAsyncThunk(
 			console.log(res.data);
 			setAuthHeader(res.data.token);
 			return res.data;
-			
+
 		} catch (e) {
 			return thunkAPI.rejectWithValue(e.response.status);
 		}
@@ -42,11 +42,11 @@ export const logout = createAsyncThunk(
 		try {
 			const state = thunkAPI.getState();
 			const token = state.auth.user.user.token;
-			const res = await axios.get('/users/logout', { 
+			const res = await axios.get('/users/logout', {
 				headers: {
 					'Authorization': `Bearer ${token}`,
 					'Content-Type': 'application/json',
-		  		} 
+		  		}
 			});
 			return res.data;
 		} catch (e) {

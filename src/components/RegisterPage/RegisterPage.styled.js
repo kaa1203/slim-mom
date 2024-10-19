@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 // import { Field } from 'formik';
-
 // export const FormLabel = styled.label`
 //   :last-child {
 //     padding-bottom: 0px;
 //   }
-
 //   display: block;
 //   font-family: ${p => p.theme.fonts.body};
 //   height: 36px;
@@ -16,13 +14,11 @@ import styled from 'styled-components';
 //   letter-spacing: 0.04em;
 //   color: ${p => p.theme.colors.gray};
 // `;
-
 // export const RegisterButton = styled.button`
 //   cursor: pointer;
 //   margin-top: 20px;
 //   width: 182px;
 //   height: 44px;
-
 //   color: #ffffff;
 //   background-color: #fc842d;
 //   border-radius: 30px;
@@ -37,13 +33,11 @@ import styled from 'styled-components';
 //   text-align: center;
 //   letter-spacing: 0.04em;
 // `;
-
 // export const LoginButton = styled.button`
 //   cursor: pointer;
 //   margin-top: 20px;
 //   width: 182px;
 //   height: 44px;
-
 //   color: #fc842d;
 //   background-color: #ffffff;
 //   border-radius: 30px;
@@ -57,7 +51,6 @@ import styled from 'styled-components';
 //   text-align: center;
 //   letter-spacing: 0.04em;
 // `;
-
 // export const FormInput = styled(Field)`
 //   display: block;
 //   height: 20px;
@@ -72,18 +65,15 @@ import styled from 'styled-components';
 //     border-color: ${p => p.theme.colors.orange};
 //   }
 // `;
-
 // // export const RegisterForm = styled(Form)`
 // //   margin-bottom: 60px;
 // // `;
-
 // // export const Wrapper = styled.div`
 // //   padding-top: 40px;
 // //   width: 285px;
 // //   margin-left: auto;
 // //   margin-right: auto;
 // // `;
-
 // export const RegisterHeader = styled.h2`
 //   font-family: ${p => p.theme.fonts.body};
 //   margin-bottom: 60px;
@@ -93,9 +83,7 @@ import styled from 'styled-components';
 //   letter-spacing: 0.04em;
 //   color: ${p => p.theme.colors.orange};
 // `;
-
 // !==============================================================================
-
 // import styled from 'styled-components';
 import leaves from '../../images/hero/desktop/leaves.png';
 import banana from '../../images/hero/desktop/banana.png';

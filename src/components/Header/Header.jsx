@@ -6,14 +6,12 @@ import logoDesktop from '../../images/logo/logoDesktop.png';
 import logoDesktopRetina from '../../images/logo/logoDesktop@2x.png';
 import { useMediaQuery } from 'react-responsive';
 import React, { useState } from 'react';
-import { BtnList, HeaderStyled, Logo } from './Header.styled';
+import { BtnList, HeaderStyled, Logo, StyledLink } from './Header.styled';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross2 } from 'react-icons/rx';
 import { BottomSection } from './UserInfo/UserInfo';
 import { Menu } from './Navigation/Navigation';
-import { Link } from 'react-router-dom';
-import { StyledLink } from './Header.styled';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 const Header = () => {
@@ -52,7 +50,7 @@ const Header = () => {
         <Link to={'/'}>
           <Logo src={takeLogo()} />
         </Link>
-                     
+
         {userName ? (
           <>
             {isTablet && <BottomSection name={userName} />}

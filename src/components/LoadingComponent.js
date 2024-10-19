@@ -1,6 +1,6 @@
 // LoadingComponent.js
-import React, { useEffect, useReducer } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useEffect, useReducer } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 // Arrow Rotation Animation
 const rotate = keyframes`

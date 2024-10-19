@@ -1,4 +1,4 @@
-import css from "./Background.module.css";
+import css from './Background.module.css';
 
 export const Background = () => {
 	return (

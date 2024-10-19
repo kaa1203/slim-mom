@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const BASE_URL = 'https://slim-mom-api.onrender.com/api/';
 
@@ -15,11 +15,11 @@ export const fetchAllEntries = createAsyncThunk(
 		try {
 			const state = thunkAPI.getState();
 			const token = state.auth.user.user.token;
-			const res = await axios.get(`entries/`,{ 
+			const res = await axios.get(`entries/`,{
 				headers: {
 					'Authorization': `Bearer ${token}`,
 					'Content-Type': 'application/json',
-				} 
+				}
 			});
 			setAuthHeader(res.data.token);
 			return res.data;
@@ -35,11 +35,11 @@ export const fetchEntriesByDate = createAsyncThunk(
 		try {
 			const state = thunkAPI.getState();
 			const token = state.auth.user.user.token;
-			const res = await axios.get(`entries/${date}`,{ 
+			const res = await axios.get(`entries/${date}`,{
 				headers: {
 					'Authorization': `Bearer ${token}`,
 					'Content-Type': 'application/json',
-				} 
+				}
 			});
 			setAuthHeader(res.data.token);
 			return res.data;
@@ -51,12 +51,12 @@ export const fetchEntriesByDate = createAsyncThunk(
 
 export const addEntry = createAsyncThunk(
 	'entries/addEntries',
-	async({ 
-		_id, 
-		categories, 
-		weight, 
-		title, 
-		calories, 
+	async({
+		_id,
+		categories,
+		weight,
+		title,
+		calories,
 		groupBloodNotAllowed,
 		grams
 	}, thunkAPI) => {
@@ -65,19 +65,19 @@ export const addEntry = createAsyncThunk(
 			const token = state.auth.user.user.token;
 
 			const res = await axios.post('entries/',
-				{ _id, 
-					categories, 
-					weight, 
-					title, 
-					calories, 
+				{ _id,
+					categories,
+					weight,
+					title,
+					calories,
 					groupBloodNotAllowed,
-					grams 
+					grams
 				},
 				{
 					headers: {
 						'Authorization': `Bearer ${token}`,
 						'Content-Type': 'application/json',
-					} 
+					}
 				}
 			);
 			setAuthHeader(res.data.token);
@@ -99,7 +99,7 @@ export const deleteEntry = createAsyncThunk(
 					headers: {
 						'Authorization': `Bearer ${token}`,
 						'Content-Type': 'application/json',
-					} 
+					}
 				}
 			);
 			return res.data();

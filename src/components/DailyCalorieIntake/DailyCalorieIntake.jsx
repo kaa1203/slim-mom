@@ -1,15 +1,6 @@
 import { routes } from 'components/Routes/routes';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  H1,
-  H2,
-  H4,
-  LI,
-  BOX,
-  ModalWrapper,
-  ButtonWrapper,
-  ButtonForm,
-} from './DailyCalorieIntake.styled';
+import { BOX, ButtonForm, ButtonWrapper, H1, H2, H4, LI, ModalWrapper } from './DailyCalorieIntake.styled';
 
 
 const DailyCalorieIntake = ({ backResponse, userParams }) => {

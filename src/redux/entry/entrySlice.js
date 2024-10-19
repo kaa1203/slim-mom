@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchEntriesByDate, addEntry } from "./operation.js";
+import { createSlice } from '@reduxjs/toolkit';
+import { addEntry, fetchEntriesByDate } from './operation.js';
 
 const handleOnPending = state => {
 	state.isLoading = false;

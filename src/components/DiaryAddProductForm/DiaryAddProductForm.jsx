@@ -4,25 +4,20 @@ import { useMediaQuery } from 'react-responsive';
 import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
 import {
-  NameInput,
-  GramsInput,
   Button,
   FormWrapper,
-  SearchBox,
-  SearchItem,
-  NameError,
   GramsError,
-  SearchItemNotRecommended,
+  GramsInput,
+  NameError,
+  NameInput,
+  SearchBox,
 } from './DiaryAddProductForm.styled';
 import AddIcon from '../../images/svg/add.svg';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 // import { getToken } from 'redux/authSelectors';
 // import { selectDate } from 'redux/productsSelectors';
 // import { setProducts } from 'redux/productsSlice';
 // import { apiAddMyProduct, apiGetSearchProducts } from 'services/api/api';
 // import { getUserInfo } from 'redux/authSelectors';
-import { useAuth } from '../../hooks/useAuth';
 
 const schema = yup.object().shape({
   productName: yup.string().required('Name is required field'),
@@ -36,15 +31,15 @@ export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
   //   const token = useSelector(getToken)
   // const { user } = useAuth();
   // const token = user.token;
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 //   const date = useSelector(selectDate);
   const mobile = useMediaQuery({ query: '(max-width: 426px)' });
   const initialValues = {
     productName: '',
     productWeight: '',
   };
-  const [searchProducts, setSearchProducts] = useState([]);
-  const [visible, setVisible] = useState(false);
+  // const [searchProducts, setSearchProducts] = useState([]);
+  // const [visible, setVisible] = useState(false);
   // const userInfo = useSelector(user);
 
   // const search = async value => {
@@ -87,10 +82,10 @@ export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
   //   }
   // };
 
-  const handleClick = (setFieldValue, title) => {
-    setVisible(false);
-    setFieldValue('productName', title);
-  };
+  // const handleClick = (setFieldValue, title) => {
+  //   setVisible(false);
+  //   setFieldValue('productName', title);
+  // };
 
   return (
     <Box position="relative" my="40px">
@@ -125,7 +120,7 @@ export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
                 </Button>
               )}
             </FormWrapper>
-            <SearchBox className={visible ? 'visible' : null}>
+            <SearchBox>
               {/* {searchProducts !== '' &&
                 searchProducts.length !== 0 &&
                 searchProducts.map(product => {

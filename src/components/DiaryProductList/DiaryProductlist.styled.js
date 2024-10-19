@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const List = styled.ul`
   @media (min-width: 426px) and (max-width: 1023px) {
@@ -14,7 +14,7 @@ export const List = styled.ul`
   &.hidden {
     overflow: hidden;
   }
-` 
+`
 
 export const NoProductsContainer = styled.div`
   text-align: center;

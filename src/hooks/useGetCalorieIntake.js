@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
-import { selectCalorie, selectCalorieIsError, selectCalorieIsLoading } from "../redux/calorie/selectors.js";
+import { useSelector } from 'react-redux';
+import { selectCalorieIsError, selectCalorieIsLoading, selectCalorieItems } from '../redux/calorie/selectors.js';
 
 export const useGetCalorieIntake = () => {
-	const result = useSelector(selectCalorie);
+	const result = useSelector(selectCalorieItems);
 	const calorieError = useSelector(selectCalorieIsError);
 	const calorieIsLoading = useSelector(selectCalorieIsLoading);
 

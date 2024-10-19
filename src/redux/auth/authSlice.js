@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signup, signin, logout } from './operations.js';
+import { logout, signin, signup } from './operations.js';
 
 const handleOnPending = state => {
   state.isLoggedIn = false;

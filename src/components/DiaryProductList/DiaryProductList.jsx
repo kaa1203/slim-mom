@@ -1,24 +1,18 @@
-import { DiaryProductsListItem } from '../../components/DiaryProductListItem/DiaryProductListItem';
-import { useContext, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 // import { getToken } from 'redux/authSelectors';
 // import { getProducts, selectDate } from 'redux/productsSelectors';
 // import { setProducts } from 'redux/productsSlice';
-import { List, NoProductsContainer } from '../DiaryProductList/DiaryProductlist.styled';
+import { List } from '../DiaryProductList/DiaryProductlist.styled';
 // import { ThemeContext } from 'components/Context/Context';
-import { HiArrowUp } from 'react-icons/hi';
-import { useMediaQuery } from 'react-responsive';
-import { useSearch } from '../../hooks/useSearch';
 // import { apiListMyProducts } from 'services/api/api';
 
 export const DiaryProductsList = () => {
   // const { isChristmas } = useContext(ThemeContext);
-  const mobile = useMediaQuery({ query: '(max-width: 426px)' });
+  // const mobile = useMediaQuery({ query: '(max-width: 426px)' });
   // const token = useSelector(getToken);
   // const date = useSelector(selectDate);
-  const dispatch = useDispatch();
-  const { items } = useSearch();
-  const products = items;
+  // const dispatch = useDispatch();
+  // const { items } = useSearch();
+  // const products = items;
   // useEffect(() => {
   //   const getProducts = async () => {
   //     try {

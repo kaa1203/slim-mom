@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { HomePage } from 'pages/Home/HomePage';

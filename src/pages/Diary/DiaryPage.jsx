@@ -3,8 +3,7 @@ import { DiaryAddProductForm } from 'components/DiaryAddProductForm/DiaryAddProd
 import { DiaryDateCalendar } from '../../components/DiaryDateCalendar/DiaryDateCalendar';
 import { DiaryProductsList } from '../../components/DiaryProductList/DiaryProductList';
 import { RightSideBar } from 'components/RightSideBar/RightSideBar';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { DiaryModal } from 'components/DiaryModal/DiaryModal';
 import { useMediaQuery } from 'react-responsive';
 import { Button } from 'components/DiaryPage/DiaryPage.styled';

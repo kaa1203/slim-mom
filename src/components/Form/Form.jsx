@@ -1,17 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Box } from 'components/Box';
-import { ButtonForm } from './Form.styled';
-import {
-  ButtonWrapper,
-  Checkbox,
-  CheckboxContainer,
-  // Error,
-  Input,
-  Label,
-  List,
-  Paragraph,
-} from './Form.styled';
+import { ButtonForm, ButtonWrapper, Checkbox, CheckboxContainer, Input, Label, List, Paragraph } from './Form.styled';
 import { useDispatch } from 'react-redux';
 import { caloriePrivate, caloriePublic } from '../../redux/calorie/operations';
 import { useAuth } from 'hooks/useAuth';
@@ -19,13 +9,14 @@ import { useAuth } from 'hooks/useAuth';
 // import { apiCalorieIntake } from 'services/api/api';
 // import { setInfoUser } from 'redux/authSlice';
 
-export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
+export const WeightForm = ({ isModalOpened, openModal, setUserParams, initialValues }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 554px)' });
   // const isLogged = useSelector(selectIsLoggedIn);
   const { isLoggedIn } = useAuth();
   // const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const [bloodType, setBloodType] = useState('1'); // State to manage selected radio button
+  const formRef = useRef()
 
   // const startValues = {
   //   height: '',
@@ -34,6 +25,12 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
   //   desiredWeight: '',
   //   bloodType: '1',
   // };
+
+  useEffect(() => {
+    if(!isModalOpened) {
+      formRef?.current?.reset()
+    }
+  }, [isModalOpened])
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -62,8 +59,6 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
     } else {
       dispatch(caloriePublic(data));
     }
-
-    form.reset();
     openModal(true);
     // const params = { ...values };
     // // schema.validate(params);
@@ -90,7 +85,7 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
         // validationSchema={schema}
       >
         <Form> */}
-      <form onSubmit={handleSubmit}>
+      <form ref={formRef} onSubmit={handleSubmit}>
         <List>
           <li
             style={

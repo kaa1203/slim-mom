@@ -41,6 +41,16 @@ export const ModalWindow = styled.div`
   }
 `;
 
+export const ErrorWindow = styled(ModalWindow)`
+  height: auto;
+  top: 30%;
+  padding: 10px;
+  text-align: center;
+  width: calc(100% - 20px);
+  color: var(--orange);
+  font-weight: bold;
+`
+
 export const ButtonClose = styled(MdClose)`
   cursor: pointer;
   position: absolute;

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { signup } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 //prettier-ignore
-import { ButtonWrapper, H2, Wrapper} from '../../components/RegisterPage/RegisterPage.styled';
+import { ButtonWrapper, H2, Wrapper } from '../../components/RegisterPage/RegisterPage.styled';
 import { WrapperWithFruits } from 'components/RegisterPage/RegisterPage.styled';
 import { routes } from 'components/Routes/routes';
 

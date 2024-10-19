@@ -1,8 +1,7 @@
 import { H2, WrapperWithFruits } from './HomePage.styled.js';
 import { WeightForm } from '../../components/Form/Form';
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from 'components/Box';
-import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 
 export const HomePage = () => {
@@ -25,6 +24,7 @@ export const HomePage = () => {
         <H2>Calculate your daily calorie intake right now</H2>
         <WeightForm
           openModal={setIsModalOpened}
+          isModalOpened = {isModalOpened}
           setUserParams={setUserParams}
         />
       </Box>

@@ -1,11 +1,7 @@
 import { Box } from 'components/Box';
 import { WeightForm } from 'components/Form/Form';
 import React, { useState } from 'react';
-import {
-  CalculatorPageWrapper,
-  H2,
-  WrapperAll,
-} from '../../components/CalculatorPage/CalculatorPage.styled';
+import { CalculatorPageWrapper, H2, WrapperAll } from '../../components/CalculatorPage/CalculatorPage.styled';
 // import { getUserInfo } from 'redux/authSelectors';
 import { useAuth } from 'hooks/useAuth';
 // import { useSelector } from 'react-redux';

@@ -10,7 +10,6 @@ import { useDispatch } from 'react-redux';
 //prettier-ignore
 import { ButtonWrapper, H2, Wrapper} from '../../components/RegisterPage/RegisterPage.styled';
 import { WrapperWithFruits } from 'components/RegisterPage/RegisterPage.styled';
-// import { Loader } from 'components/Loader/Loader';
 import { routes } from 'components/Routes/routes';
 
 const RegistrationPage = () => {

@@ -44,11 +44,11 @@ h1,h2,h3,h4,h5,h6,p {
 	box-sizing: inherit;
 }
 
-img {
+/* img {
   display: block;
   width: 100%;
   height: auto;
-}
+} */
 
 a {
 	text-decoration: none;

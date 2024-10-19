@@ -1,4 +1,4 @@
-.header {
+/* .header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -89,10 +89,10 @@
 
 .inactive {
   color: #9b9faa;
-}
+} */
 
 /* Burger Menu Icon */
-.burger {
+/* .burger {
   display: none;
   background: none;
   border: none;
@@ -123,10 +123,10 @@
 
 .burgerIcon::after {
   bottom: -8px;
-}
+} */
 
 /* Tablet Style */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .nav {
     display: none;
     flex-direction: column;
@@ -157,9 +157,9 @@
 }
 
 /* Mobile styles */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .nav2 {
     display: inline-block;
     align-items: flex-end;
   }
-}
+} */

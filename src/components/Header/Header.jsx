@@ -1,99 +1,111 @@
+import logoMobile from '../../images/logo/logoMobile.png';
+import logoMobileRetina from '../../images/logo/logoMobile@2x.png';
+import logoTablet from '../../images/logo/logoTablet.png';
+import logoTabletRetina from '../../images/logo/logoTablet@2x.png';
+import logoDesktop from '../../images/logo/logoDesktop.png';
+import logoDesktopRetina from '../../images/logo/logoDesktop@2x.png';
+import { useMediaQuery } from 'react-responsive';
 import React, { useState } from 'react';
-import logo from '../../images/slim-mom logo.png';
-import css from './Header.module.css';
-import { NavLink } from 'react-router-dom';
-import { useAuth } from 'hooks/useAuth';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/auth/operations';
+import { BtnList, HeaderStyled, Logo } from './Header.styled';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { RxCross2 } from 'react-icons/rx';
+import { BottomSection } from './UserInfo/UserInfo';
+import { Menu } from './Navigation/Navigation';
+import { Link } from 'react-router-dom';
+import { StyledLink } from './Header.styled';
+import { useLocation } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 const Header = () => {
-  const { isLoggedIn, user } = useAuth();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [openNavigation, setOpenNavigation] = useState(false);
+  const { user } = useAuth();
+  console.log(user);
+  const userName = user?.name || '';
+  console.log(userName);
+  const { pathname } = useLocation();
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 426px)' });
+  const isTablet = useMediaQuery({
+    query: '(min-width: 426px) and (max-width: 1023px)',
+  });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
+  const takeLogo = () => {
+    if (isMobile) {
+      return logoMobile;
+    } else if (isTablet) {
+      return logoTablet;
+    } else if (isDesktop) {
+      return logoDesktop;
+    } else if (isMobile && isRetina) {
+      return logoMobileRetina;
+    } else if (isTablet && isRetina) {
+      return logoTabletRetina;
+    } else if (isDesktop && isRetina) {
+      return logoDesktopRetina;
+    }
+  };
 
-  const handleLogOut = e => {
-    dispatch(logout());
-  }
   return (
-    <header className={css.header}>
-      <div className={css.leftSection}>
-        <div className={css.logo}>
-			 <NavLink 
-			 	to="/"
-			 > 
-          	<img src={logo} alt="logo" />
-			 </NavLink>
-        </div>
-
-        {/* Desktop and Tablet Navigation */}
-        <nav className={css.nav}>
-          {' '}
-          {isLoggedIn ? (
-            <>
-              <NavLink
-                to="/diary"
-                className={({ isActive }) => (isActive ? css.active : css.inactive)}
-              >
-                 Diary
-              </NavLink>
-              <NavLink
-                to="/calculator"
-                className={({ isActive }) => (isActive ? css.active : css.inactive)}
-              >
-                Calculator
-              </NavLink>
-            </>
-          ) : (
-            <div className={css.nav2}>
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? css.active : css.inactive)}
-              >
-					 Log in
-              </NavLink>
-              <NavLink
-                to="/registration"
-                className={({ isActive }) => (isActive ? css.active : css.inactive)}
-              >
-                Registration
-              </NavLink>
-            </div>
-          )}
-        </nav>
-      </div>
-
-      <div className={css.rightSection}>
-        {isLoggedIn ? (
+    <>
+      <HeaderStyled>
+        <Link to={'/'}>
+          <Logo src={takeLogo()} />
+        </Link>
+                     
+        {userName ? (
           <>
-            <span>{user.name}</span> |<div onClick={handleLogOut}>Exit</div>
-            <button className={css.burger} onClick={toggleMenu}>
-              <span className={css.burgerIcon}></span>
-            </button>
+            {isTablet && <BottomSection name={userName} />}
+            {isDesktop && (
+              <>
+                <Menu setOpenNavigation={setOpenNavigation} />
+                <BottomSection name={userName} />
+              </>
+            )}
+            {!isDesktop && (
+              <>
+                {openNavigation ? (
+                  <RxCross2
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      color: 'black',
+                    }}
+                    onClick={() => setOpenNavigation(false)}
+                  />
+                ) : (
+                  <GiHamburgerMenu
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      color: 'black',
+                    }}
+                    onClick={() => {
+                      setOpenNavigation(true);
+                    }}
+                  />
+                )}
+                {openNavigation && (
+                  <Menu setOpenNavigation={setOpenNavigation} />
+                )}
+              </>
+            )}
           </>
-        ) : null}
-      </div>
-
-      {/* Collapsible Menu for Mobile View (only when logged in) */}
-      {isLoggedIn && menuOpen && (
-        <nav className={css.collapsibleMenu}>
-          <NavLink
-            to="/diary"
-            className={({ isActive }) => (isActive ? css.active : css.inactive)}
-          >
-            | Diary
-          </NavLink>
-          <NavLink
-            to="/calculator"
-            className={({ isActive }) => (isActive ? css.active : css.inactive)}
-          >
-            Calculator
-          </NavLink>
-        </nav>
-      )}
-    </header>
+        ) : (pathname === '/registration' || pathname === '/login') &&
+          isDesktop ? null : (
+          <BtnList>
+            <li>
+              <StyledLink to="login">Log in</StyledLink>
+            </li>
+            <li>
+              <StyledLink to="registration">Registration</StyledLink>
+            </li>
+          </BtnList>
+        )}
+      </HeaderStyled>
+      {isMobile && userName && <BottomSection name={userName} />}
+    </>
   );
 };
 
-export default Header;
+export { Header };

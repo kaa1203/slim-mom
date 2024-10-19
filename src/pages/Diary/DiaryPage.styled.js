@@ -4,7 +4,6 @@ import leavesTablet from '../../images/hero/tablet/leaves.png';
 import SideBarBgDesk from '../../images/dairy-page/sidebar-bg-desk.png';
 
 export const WrapperAll = styled.div`
-
   @media (min-width: 768px) and (max-width: 1023px) {
     background-image: url(${leavesTablet});
     background-repeat: no-repeat;

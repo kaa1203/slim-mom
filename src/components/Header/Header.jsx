@@ -12,7 +12,7 @@ import { RxCross2 } from 'react-icons/rx';
 import { BottomSection } from './UserInfo/UserInfo';
 import { Menu } from './Navigation/Navigation';
 import { Link } from 'react-router-dom';
-import { StyledLink } from './Header.styled';
+import { StyledLink } from './Header.styled.js';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
@@ -52,7 +52,7 @@ const Header = () => {
         <Link to={'/'}>
           <Logo src={takeLogo()} />
         </Link>
-                     
+
         {userName ? (
           <>
             {isTablet && <BottomSection name={userName} />}

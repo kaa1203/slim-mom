@@ -52,7 +52,7 @@ const Header = () => {
         <Link to={'/'}>
           <Logo src={takeLogo()} />
         </Link>
-
+                     
         {userName ? (
           <>
             {isTablet && <BottomSection name={userName} />}

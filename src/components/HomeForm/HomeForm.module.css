@@ -79,6 +79,8 @@ span::after {
     left: 4px;
     /* background-color: var(--orange); */
     border-radius: 50%;
+    width: 10px;
+    height: 10px;
 }
 
 .radio {

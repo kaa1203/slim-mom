@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchEntriesByDate } from "./operation.js";
+import { fetchEntriesByDate, addEntry } from "./operation.js";
 
 const handleOnPending = state => {
 	state.isLoading = false;
@@ -27,6 +27,22 @@ const entrySlice = createSlice({
 				console.log(action.payload);
 			})
 			.addCase(fetchEntriesByDate.rejected, handleOnReject)
+			.addCase(addEntry.pending, handleOnPending)
+			.addCase(addEntry.fulfilled, (state, action) => {
+				state.items.push(action.payload);
+				state.isLoading = false;
+				state.isError = null;
+			})
+			.addCase(addEntry.rejected, handleOnReject)
+			// .addCase(deleteEntry.pending, handleOnPending)
+			// .addCase(deleteEntry.fulfilled, (state, action) => {
+			// 	console.log(action.payload);
+			// })
+			// .addCase(fetchAllEntries.rejected, handleOnPending)
+			// .addCase(fetchAllEntries.fulfilled, (state, action) => {
+			// 	console.log(action.payload);
+			// })
+			// .addCase(fetchAllEntries.rejected, handleOnReject);
 	}
 });
 

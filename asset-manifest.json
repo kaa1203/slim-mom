@@ -1,20 +1,25 @@
 {
   "files": {
-    "main.css": "/slim-mom/static/css/main.fd32c3d1.css",
-    "main.js": "/slim-mom/static/js/main.bb029942.js",
+    "main.css": "/slim-mom/static/css/main.bc5a1795.css",
+    "main.js": "/slim-mom/static/js/main.1a89e088.js",
     "static/media/Strawberry@2x.png": "/slim-mom/static/media/Strawberry@2x.810e8754ff3a5ece844c.png",
     "static/media/banana@2x.png": "/slim-mom/static/media/banana@2x.c9bae4c1d788895e7e32.png",
-    "static/media/leaves@2x.png": "/slim-mom/static/media/leaves@2x.be8555f976d4cbd66053.png",
+    "static/media/leaves@2x.png": "/slim-mom/static/media/leaves@2x.0ca97f526efa230ccff5.png",
     "static/media/banana.png": "/slim-mom/static/media/banana.f24511a2d04fd6c36038.png",
     "static/media/Strawberry.png": "/slim-mom/static/media/Strawberry.1c284af98f1ce377ad10.png",
-    "static/media/leaves.png": "/slim-mom/static/media/leaves.ab2ea6027bcd393c10fa.png",
+    "static/media/leaves.png": "/slim-mom/static/media/leaves.1110806d7ae1e54afcd7.png",
+    "static/media/leaf-desk.png": "/slim-mom/static/media/leaf-desk.07ec7143c40752d1b8ad.png",
     "static/media/Vector@2x.png": "/slim-mom/static/media/Vector@2x.fc7e5303b42dbcc105cb.png",
+    "static/media/leaf-tablet.png": "/slim-mom/static/media/leaf-tablet.3cf507fc5063b80c0790.png",
+    "static/media/logoDesktop@2x.png": "/slim-mom/static/media/logoDesktop@2x.c1f856addb611cbab936.png",
     "index.html": "/slim-mom/index.html",
-    "main.fd32c3d1.css.map": "/slim-mom/static/css/main.fd32c3d1.css.map",
-    "main.bb029942.js.map": "/slim-mom/static/js/main.bb029942.js.map"
+    "static/media/calendar.svg": "/slim-mom/static/media/calendar.f07abe41ca1bac88f7e6c38064355356.svg",
+    "static/media/add.svg": "/slim-mom/static/media/add.abbad4ece4830b88ccd984afbf9c2a1f.svg",
+    "main.bc5a1795.css.map": "/slim-mom/static/css/main.bc5a1795.css.map",
+    "main.1a89e088.js.map": "/slim-mom/static/js/main.1a89e088.js.map"
   },
   "entrypoints": [
-    "static/css/main.fd32c3d1.css",
-    "static/js/main.bb029942.js"
+    "static/css/main.bc5a1795.css",
+    "static/js/main.1a89e088.js"
   ]
 }

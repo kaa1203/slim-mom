@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-// import { Formik, ErrorMessage, Form } from 'formik';
 import { useMediaQuery } from 'react-responsive';
-// import * as yup from 'yup';
 import { Box } from 'components/Box';
 import { ButtonForm } from './Form.styled';
 import {
@@ -15,44 +13,11 @@ import {
   Paragraph,
 } from './Form.styled';
 import { useDispatch } from 'react-redux';
-// import { selectIsLoggedIn, selectToken } from '../../redux/auth/selectors';
 import { caloriePrivate, caloriePublic } from '../../redux/calorie/operations';
 import { useAuth } from 'hooks/useAuth';
 // import { apiUpdateInfoUser } from 'services/api/api';
 // import { apiCalorieIntake } from 'services/api/api';
 // import { setInfoUser } from 'redux/authSlice';
-
-// const schema = yup.object().shape({
-//   height: yup
-//     .number('Height is use only number')
-//     .min(100, 'Please enter a number more than or equal to 100')
-//     .max(250, 'Please enter a number less than or equal to 250')
-//     .integer('Height must be a integer number')
-//     .typeError('Height must be a number')
-//     .required('Height is required field'),
-//   age: yup
-//     .number('Age is use only number')
-//     .min(18, 'Please enter a number more than or equal to 18')
-//     .max(100, 'Please enter a number less than or equal to 100')
-//     .typeError('Age must be a number')
-//     .required('Age is required field')
-//     .integer('Age must be a integer number'),
-//   currentWeight: yup
-//     .number('Current weight is use only number')
-//     .min(20, 'Please enter a number more than or equal to 20')
-//     .max(500, 'Please enter a number less than or equal to 500')
-//     .typeError('Current weight must be a number')
-//     .required('Current weight is required field')
-//     .integer('Current weight must be a integer number'),
-//   desiredWeight: yup
-//     .number('Desired weight is use only number')
-//     .min(20, 'Please enter a number more than or equal to 20')
-//     .max(500, 'Please enter a number less than or equal to 500')
-//     .typeError('Desired weight must be a number')
-//     .required('Desired weight is required field')
-//     .integer('Desired weight must be a integer number'),
-//   bloodType: yup.string().required(),
-// });
 
 export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 554px)' });
@@ -72,7 +37,7 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    openModal(true);
+
     const form = e.target;
     const data = {
       height: form.elements.height.value,
@@ -82,8 +47,6 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
       bloodType: form.elements.bloodType.value,
     };
     setUserParams(data);
-    if (isLoggedIn) dispatch(caloriePrivate(data));
-
     if (
       !data.height ||
       !data.age ||
@@ -94,8 +57,14 @@ export const WeightForm = ({ openModal, setUserParams, initialValues }) => {
       alert('Please fill in all the required fields.');
       return; // Prevent form submission if any field is empty
     }
-    dispatch(caloriePublic(data));
+    if (isLoggedIn) {
+      dispatch(caloriePrivate(data));
+    } else {
+      dispatch(caloriePublic(data));
+    }
+
     form.reset();
+    openModal(true);
     // const params = { ...values };
     // // schema.validate(params);
     // setUserParams(params);

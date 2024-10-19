@@ -7,7 +7,8 @@ export const HeaderStyled = styled.header`
   align-items: center;
   padding: 20px;
   padding-bottom: 16px;
-  border-bottom: ${p => p.theme.borders.header};
+  border-bottom: 2px solid #e0e0e0;
+
   @media (max-width: 425px) {
     position: relative; // set position relative in order to see header when modal on phone is opened
     z-index: 22;
@@ -36,6 +37,7 @@ export const HeaderStyled = styled.header`
 export const Logo = styled.img`
   height: 44px;
   filter: ${p => p.theme.colors.filter};
+
   @media (min-width: 426px) and (max-width: 1023px) {
   }
   @media (min-width: 1024px) {
@@ -87,17 +89,23 @@ export const HeaderBtn = styled.button`
 export const StyledLink = styled(NavLink)`
   padding: 0px;
   border: none;
-  font-family: GothamProBold;
-  line-height: 1.2;
   font-size: 14px;
   text-align: right;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: rgb(255, 255, 255);
-  color: rgb(33, 33, 33);
+  color: #9b9faa;
+  font-family: Verdana;
+  font-weight: 700;
+  line-height: 17.01px;
   text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: #212121;
+  }
   &.active {
-    color: ${p => p.theme.colors.gray};
+    color: #212121;
   }
   @media (min-width: 426px) and (max-width: 1023px) {
   }

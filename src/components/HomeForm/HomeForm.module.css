@@ -1,123 +1,128 @@
-.formContainer {
-    width: 600px;
-    margin-top: 100px; 
-    margin-left: 20px; 
-    position: relative;
+/* .formContainer {
+  width: 600px;
+  margin-top: 100px;
+  margin-left: 20px;
+  position: relative;
 }
 
 .title {
-    font-size: 34px;
-    font-weight: 700;
-    line-height: 47.6px;
-    text-align: left;
-    width: 608px;
-    margin-bottom: 50px;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 47.6px;
+  text-align: left;
+  width: 608px;
+  margin-bottom: 50px;
+  font-family: Verdana;
 }
 
 .inputContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .label {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--grey);
-    width: calc(100% / 2 - 10px);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--grey);
+  width: calc(100% / 2 - 10px);
+  font-family: Verdana;
+  line-height: 17.01px;
+  letter-spacing: 0.04em;
+  text-align: left;
 }
 
 .input {
-    width: 95%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--grey-transparent);
-    padding: 5px 10px 0 5px;
-    font-size: 16px;
-    margin-top: 10px;
+  width: 95%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--grey-transparent);
+  padding: 5px 10px 0 5px;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 .input::-webkit-outer-spin-button,
 .input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .radioContainer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 30px;
-    border-top: 1px solid var(--grey-transparent);
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+  border-top: 1px solid var(--grey-transparent);
+  position: relative;
 }
 
 .radioContainer .label {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    position: relative;
-    top: 10px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+  top: 10px;
+  cursor: pointer;
 }
 
 .radioContainer .label::before {
-    content: '';
-    display: block;
-    width: 18px;
-    height: 18px;
-    border: 1px solid var(--grey);
-    background-color: transparent;
-    border-radius: 50%;
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--grey);
+  background-color: transparent;
+  border-radius: 50%;
 }
 
 span::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    /* background-color: var(--orange); */
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-}
+  content: '';
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  /* background-color: var(--orange); */
+  /* border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}     
 
 .radio {
-    display: none;
-    width: 18px;
-    height: 18px;
-    top: 20px;
+  display: none;
+  width: 18px;
+  height: 18px;
+  top: 20px;
 }
 
 .radio:checked + span {
-    color: var(--orange);
+  color: var(--orange);
 }
 
 .radio:checked ~ span::after {
-    background-color: var(--orange);
+  background-color: var(--orange);
 }
 
 span {
-    font-weight: 700;
-    font-size: 14px;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .bloodTypeContainer {
-    width: 275px;
+  width: 275px;
 }
 
 .button {
-    position: absolute;
-    bottom: -25%;
-    right: 0;
-    border-radius: 20px;
-    border: none;
-    padding: 14px 40px;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--white);
-    background-color: var(--orange);
-    cursor: pointer;
-    box-shadow: 0px 3px 8px 2px #FC842D80;
-}
+  position: absolute;
+  bottom: -25%;
+  right: 0;
+  border-radius: 20px;
+  border: none;
+  padding: 14px 40px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  background-color: var(--orange);
+  cursor: pointer;
+  box-shadow: 0px 3px 8px 2px #fc842d80;
+} */ */

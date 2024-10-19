@@ -1,30 +1,31 @@
 @import-normalize; /* bring in normalize.css styles */
 
 :root {
-	--black: #212121;
-	--grey: #9B9FAA;
-	--grey-transparent: #E0E0E0;
-	--orange: #FC842D;
-	--dark-blue: #264061;
-	--overlay: #2121211F;
-	--white: #ffffff
+  --black: #212121;
+  --grey: #9b9faa;
+  --grey-transparent: #e0e0e0;
+  --orange: #fc842d;
+  --dark-blue: #264061;
+  --overlay: #2121211f;
+  --white: #ffffff;
 }
 
 *:focus {
-	outline: none;
+  outline: none;
 }
 
 body {
   margin: 0;
-  font-family: 'Verdana', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Verdana', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
 }
 
 html {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 code {
@@ -32,16 +33,24 @@ code {
     monospace;
 }
 
-h1,h2,h3,h4,h5,h6,p {
-	font-size: inherit;
-	font-weight: normal;
-	font-style: normal;
-	margin: 0;
-	padding: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: inherit;
+  font-weight: normal;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
 }
- 
-*, *:before, *:after {
-	box-sizing: inherit;
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 /* img {
@@ -51,11 +60,11 @@ h1,h2,h3,h4,h5,h6,p {
 } */
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

@@ -64,7 +64,8 @@ export const H2 = styled.h2`
   line-height: 1.4;
   margin-bottom: 34px;
   color: ${p => p.theme.colors.black};
-
+  font-family: Verdana;
+  font-weight: 700;
 
   @media (min-width: 426px) and (max-width: 1023px) {
     font-size: ${p => p.theme.fontSizes[3]};

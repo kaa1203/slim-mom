@@ -1,69 +1,107 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { register } from '../../redux/authSlice';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { Input, List } from 'components/Form/Form.styled';
+import { Button } from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
-import './RegistrationPage.css';
+import { signup } from '../../redux/auth/operations';
+import { useDispatch } from 'react-redux';
+//prettier-ignore
+import { ButtonWrapper, H2, Wrapper } from '../../components/RegisterPage/RegisterPage.styled';
+import { WrapperWithFruits } from 'components/RegisterPage/RegisterPage.styled';
+import { routes } from 'components/Routes/routes';
 
 const RegistrationPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-    try {
-      await dispatch(register({ email, password })).unwrap();
-      navigate('/');  // to the (HomePage)
-    } catch (error) {
-      console.error('Failed to register:', error);
-    }
+    const form = e.target;
+
+    const data = {
+      name: form.elements.name.value,
+      email: form.elements.email.value,
+      password: form.elements.password.value,
+    };
+
+    dispatch(signup(data));
+    form.reset();
+  };
+  const handleClick = () => {
+    navigate(routes.login);
+  };
+  const handleShowPassword = () => {
+    setIsShowPassword(!isShowPassword);
   };
 
   return (
-    <div className="registration-container">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="email" 
-          placeholder="Email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          required 
-        />
-        <input 
-          type="password" 
-          placeholder="Password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
-        />
-        <input 
-          type="password" 
-          placeholder="Confirm Password" 
-          value={confirmPassword} 
-          onChange={(e) => setConfirmPassword(e.target.value)} 
-          required 
-        />
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    <WrapperWithFruits>
+      <Wrapper>
+        <H2>Register</H2>
+        <form onSubmit={handleSubmit}>
+          <List style={{ display: 'grid', gridTemplateColumns: 'revert' }}>
+            <li>
+              <label>
+                <Input type="name" name="name" placeholder="Name *" />
+                {/* <ErrorMessage name="name" component={Error} /> */}
+              </label>
+            </li>
+
+            <li>
+              <label>
+                <Input type="email" name="email" placeholder="Email *" />
+                {/* <ErrorMessage name="email" component={Error} /> */}
+              </label>
+            </li>
+
+            <li>
+              <label style={{ position: 'relative' }}>
+                <Input
+                  type={isShowPassword ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Password *"
+                  maxLength="16"
+                />
+                {isShowPassword ? (
+                  <AiFillEyeInvisible
+                    onClick={handleShowPassword}
+                    style={{
+                      position: 'absolute',
+                      top: '0px',
+                      left: '250px',
+                      color: '#FC842D',
+                    }}
+                  />
+                ) : (
+                  <AiFillEye
+                    onClick={handleShowPassword}
+                    style={{
+                      position: 'absolute',
+                      top: '0px',
+                      left: '250px',
+                      color: '#FC842D',
+                    }}
+                  />
+                )}
+                {/* <ErrorMessage name="password" component={Error} /> */}
+              </label>
+            </li>
+          </List>
+          <ButtonWrapper>
+            <Button type="submit" full={true} style={{ width: '200px' }}>
+              Register
+            </Button>
+            <div onClick={handleClick}>
+              <Button type="button" full={false}>
+                Log In
+              </Button>
+            </div>
+          </ButtonWrapper>
+        </form>
+      </Wrapper>
+    </WrapperWithFruits>
   );
 };
 
-export default RegistrationPage;
-
-
-
-// export const RegistrationPage = () => {
-	
-// }
-
-// export const RegistrationPage = () => {
-	
-// }
+export { RegistrationPage };

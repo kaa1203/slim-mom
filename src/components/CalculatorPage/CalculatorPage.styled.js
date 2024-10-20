@@ -6,13 +6,14 @@ import leavesTablet from '../../images/hero/tablet/leaves.png';
 import SideBarBgDesk from '../../images/dairy-page/sidebar-bg-desk.png';
 
 export const WrapperAll = styled.div`
-
   @media (min-width: 768px) and (max-width: 1023px) {
     background-image: url(${leavesTablet});
     background-repeat: no-repeat;
     background-position: bottom 0px left 0px;
     background-size: auto;
-  }
+  // display:flex;
+
+
   @media (min-width: 1024px) and (max-width: 1120px) {
     padding: 300px 16px 55px 16px;
     display: flex;

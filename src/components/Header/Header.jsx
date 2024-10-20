@@ -19,9 +19,8 @@ import { useAuth } from '../../hooks/useAuth';
 const Header = () => {
   const [openNavigation, setOpenNavigation] = useState(false);
   const { user } = useAuth();
-  console.log(user);
   const userName = user?.name || '';
-  console.log(userName);
+  
   const { pathname } = useLocation();
 
   const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });

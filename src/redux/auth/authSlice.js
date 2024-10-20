@@ -25,7 +25,6 @@ const authSlice = createSlice({
     builder
       .addCase(signup.pending, handleOnPending)
       .addCase(signup.fulfilled, (state, action) => {
-        console.log(action.payload);
       })
       .addCase(signup.rejected, handleOnReject)
       .addCase(signin.pending, handleOnPending)
@@ -33,7 +32,6 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.user = action.payload;
         state.error = null;
-        console.log(action.payload);
       })
       .addCase(signin.rejected, handleOnReject)
       .addCase(logout.pending, handleOnPending)

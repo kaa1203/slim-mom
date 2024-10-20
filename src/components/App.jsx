@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { HomePage } from 'pages/Home/HomePage';
+import { HomePage } from 'pages/Home/Homepage';
 import { DiaryPage } from 'pages/Diary/DiaryPage';
 import { CalculatorPage } from 'pages/Calculator/CalculatorPage';
 import { LoginPage } from 'pages/Login/LoginPage';

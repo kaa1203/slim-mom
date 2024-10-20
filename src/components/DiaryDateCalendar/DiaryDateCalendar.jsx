@@ -10,20 +10,22 @@ import moment from "moment";
 export const DiaryDateCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const dispatch = useDispatch()
+  
   const handleChange = (date) => {
-    const formattedDate = moment(date).format("DD.MM.YYYY")
+    const formattedDate = moment(date).format("YYYY-MM-DD")
     setSelectedDate(date);
     dispatch(fetchEntriesByDate(formattedDate)) 
   }
   
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <div>
-      <DatePickerWrapper onClick={onClick} ref={ref}>
+      <DatePickerWrapper onClick={onClick} ref={ref} id="calendar">
         {value}
         <Icon src={CalendarIcon} alt="calendar icon" />
       </DatePickerWrapper>
     </div>
   ));
+
   return (
     <div>
       <DatePicker 

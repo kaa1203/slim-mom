@@ -1,52 +1,61 @@
-import { useSelector } from "react-redux";
 import { Wrapper, SummaryWrap, FoodWrap, Title, Item, Text, RedText } from '../RightSideBar/RightSideBar.styled';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useGetEntry } from '../../hooks/useGetEntry';
+import { fetchAllCalculations } from '../../redux/calorie/operations';
+import { useGetCalorieIntake } from '../../hooks/useGetCalorieIntake';
 
 export const RightSideBar = () => {
+	const today = new Date();
+	const calendar = document.querySelector('#calendar');
+	const now = `${(today.getDate()).toString().padStart(2, '0')}.${(today.getMonth() + 1).toString().padStart(2, '0')}.${today.getFullYear()}`;
+	const dispatch = useDispatch();
+	
+	const { totalCalories, entry } = useGetEntry();
+	const { calculation } = useGetCalorieIntake();
 
-    // const date = useSelector((state) => state.products.date);
-    // const dailyRate = useSelector((state) => state.auth.userInfo.dailyRate);
-    // const notAllowedProducts = useSelector((state) => state.auth.userInfo.notAllowedProducts);
-    // const productsList = useSelector((state) => state.products.productsList);
-    // const totalCalories = productsList.map(product => product.productCalories)
-    //     .reduce((prev, product) => { return Number.parseInt(prev) + Number.parseInt(product) }, 0);
-    // const leftCalories = dailyRate - totalCalories;
-    // const nOfNorm = (totalCalories / dailyRate) * 100;
+	useEffect(() => {
+		dispatch(fetchAllCalculations());
+	}, [dispatch, now]);
+
+	 const date = calendar?.textContent || now;
+    const dailyRate = calculation?.calorieIntake || 0;
+    const foodsToAvoid = calculation?.foodsToAvoid || [];
+    const leftCalories = dailyRate - totalCalories;
+    const nOfNorm = (totalCalories / dailyRate) * 100;
 
     return (
         <Wrapper>
-            {/* <SummaryWrap>
+            <SummaryWrap>
                 <Title>Summary for {date}</Title>
                 <ul>
                     <Item>
                         <Text>Left</Text>
-                        {leftCalories < 0 ?
-                            <RedText>{leftCalories} kcal</RedText> :
-                            <Text>{leftCalories ? leftCalories : '000'} kcal</Text> 
-                        }
+								<Text>{ leftCalories } kcal</Text> 
                     </Item>
                     <Item>
                         <Text>Consumed</Text>
-                        <Text>{totalCalories ? totalCalories : '000'} kcal</Text>
+                        <Text>{ totalCalories } kcal</Text>
                     </Item>
                     <Item>
                         <Text>Daily rate</Text>
-                        <Text>{dailyRate ? dailyRate : '000'} kcal</Text>
+                        <Text>{dailyRate} kcal</Text>
                     </Item>
                     <Item>
                         <Text>n% of normal</Text>
                        
                         {nOfNorm > 100 ?
-                            <RedText>{nOfNorm ? Math.round(nOfNorm) : '0'} %</RedText> :
-                            <Text>{nOfNorm ? Math.round(nOfNorm) : '0'} %</Text> 
+                            <RedText>{nOfNorm.toFixed(2)} %</RedText> :
+                            <Text>{(nOfNorm.toFixed(2))} %</Text> 
                         }
                     </Item>
                 </ul>
             </SummaryWrap>
             <FoodWrap>
                 <Title>Food not recommended</Title>
-                {notAllowedProducts ? 
+                {foodsToAvoid ? 
                     <ul>
-                        {notAllowedProducts.map((prod, index) => (
+                        {foodsToAvoid.map((prod, index) => (
                             <Text key={index}>
                                 {index + 1}. {prod}
                             </Text>
@@ -54,7 +63,7 @@ export const RightSideBar = () => {
                     </ul> :
                     <Text>Your diet will be displayed here</Text>
                 }
-            </FoodWrap> */}
+            </FoodWrap>
         </Wrapper>
     )
 };

@@ -24,7 +24,6 @@ const entrySlice = createSlice({
 				state.items = action.payload;
 				state.isLoading = false;
 				state.isError = null;
-				console.log(action.payload);
 			})
 			.addCase(fetchEntriesByDate.rejected, handleOnReject)
 			.addCase(addEntry.pending, handleOnPending)

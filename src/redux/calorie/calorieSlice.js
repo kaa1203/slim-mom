@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { caloriePrivate, caloriePublic } from './operations.js';
+import { caloriePrivate, caloriePublic, fetchAllCalculations } from './operations.js';
 
 const handleOnPending = state => {
   state.isLoading = true;
@@ -15,6 +15,7 @@ const calorieSlice = createSlice({
   name: 'calorie',
   initialState: {
     items: {},
+	 calculation: [],
     isLoading: false,
     isError: null,
   },
@@ -33,9 +34,15 @@ const calorieSlice = createSlice({
         state.items = action.payload;
         state.isLoading = false;
         state.isError = null;
-        console.log(action.payload);
       })
-      .addCase(caloriePrivate.rejected, handleOnReject);
+      .addCase(caloriePrivate.rejected, handleOnReject)
+		.addCase(fetchAllCalculations.pending, handleOnPending)
+		.addCase(fetchAllCalculations.fulfilled, (state, action) => {
+			state.calculation = action.payload;
+			state.isLoading = false;
+			state.isError = null;
+		})
+		.addCase(fetchAllCalculations.rejected, handleOnReject)
   },
 });
 

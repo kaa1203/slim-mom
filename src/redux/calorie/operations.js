@@ -80,3 +80,22 @@ export const caloriePrivate = createAsyncThunk(
     }
   }
 );
+
+export const fetchAllCalculations = createAsyncThunk(
+	'entries/fetchAllCalculations',
+	async(_, thunkAPI) => {
+		try {
+			const state = thunkAPI.getState();
+      	const token = state.auth.user.user.token;
+			const res = await axios.get('calorieIntake/private', {
+				headers: {
+				 'Authorization': `Bearer ${token}`,
+				 'Content-Type': 'application/json',
+				}
+			});
+			return res.data;
+		} catch (e) {
+			return thunkAPI.rejectWithValue(e.message);
+		}
+	}
+)

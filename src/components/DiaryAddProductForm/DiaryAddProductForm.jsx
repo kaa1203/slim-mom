@@ -15,37 +15,76 @@ import {
   SearchItemNotRecommended,
 } from './DiaryAddProductForm.styled';
 import AddIcon from '../../images/svg/add.svg';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-// import { getToken } from 'redux/authSelectors';
-// import { selectDate } from 'redux/productsSelectors';
-// import { setProducts } from 'redux/productsSlice';
-// import { apiAddMyProduct, apiGetSearchProducts } from 'services/api/api';
-// import { getUserInfo } from 'redux/authSelectors';
-import { useAuth } from '../../hooks/useAuth';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useGetEntry } from '../../hooks/useGetEntry';
+import { searchProducts } from '../../redux/product/productSlice';
+import { fetchProducts } from '../../redux/product/operations';
+import { useSearch } from '../../hooks/useSearch';
 
 const schema = yup.object().shape({
-  productName: yup.string().required('Name is required field'),
+//   productName: yup.string().required('Name is required field'),
   productWeight: yup
     .number('Grams must be a number')
     .typeError('Grams must be a number')
     .required('Grams is required field'),
 });
 
+const throttle = (fn, delay) => {
+	let lastCall = 0;
+	return function (...args) {
+	  const now = new Date().getTime();
+	  if (now - lastCall < delay) {
+		 return;
+	  }
+	  lastCall = now;
+	  return fn(...args);
+	};
+}
+
 export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
-  //   const token = useSelector(getToken)
   // const { user } = useAuth();
   // const token = user.token;
+const {entry} = useGetEntry();
+  const navigate = useNavigate();	
+  const location = useLocation();
   const dispatch = useDispatch();
+  const { products } = useSearch();
+
+  const getQueryParams = () => new URLSearchParams(location.search);
 //   const date = useSelector(selectDate);
   const mobile = useMediaQuery({ query: '(max-width: 426px)' });
   const initialValues = {
     productName: '',
     productWeight: '',
   };
-  const [searchProducts, setSearchProducts] = useState([]);
-  const [visible, setVisible] = useState(false);
+  const [searchValue, setSearchValue] = useState([]);
+  const [visible, setVisible] = useState(true);
   // const userInfo = useSelector(user);
+
+useEffect(() => {
+	dispatch(fetchProducts(""));
+}, [dispatch]);
+
+const handleOnChange = e => {
+	const query = e.target.value;
+	const params = getQueryParams();
+
+	setSearchValue(query);
+	params.set('q', query);
+	navigate({ search: params.toString()});
+	
+	setVisible(query.length > 0);
+
+	throttledSearch(query);
+};
+
+const throttledSearch = throttle((search) => {
+	if (search !== searchValue) {
+		dispatch(searchProducts(search));
+	}
+}, 1500);
 
   // const search = async value => {
   //   try {
@@ -108,6 +147,8 @@ export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
                 placeholder="Enter product name"
                 name="productName"
                 autoComplete="off"
+					 value={ searchValue }
+					 onChange={handleOnChange}
               />
               <ErrorMessage name="productName" component={NameError} />
               <GramsInput

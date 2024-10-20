@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { DatePickerWrapper, Icon } from './DiaryDateCalendar.styled';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
@@ -11,6 +11,12 @@ export const DiaryDateCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const dispatch = useDispatch()
   
+  useEffect(() => {
+	const today = new Date();
+	const formattedDate = moment(today).format("YYYY-MM-DD")
+    dispatch(fetchEntriesByDate(formattedDate))
+  }, [dispatch])
+
   const handleChange = (date) => {
     const formattedDate = moment(date).format("YYYY-MM-DD")
     setSelectedDate(date);

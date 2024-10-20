@@ -6,6 +6,7 @@ export const Section = styled.div`
   justify-content: flex-end;
   padding: 15px 20px 8px;
   background-color: ${p => p.theme.colors.backgroundGray};
+  width: 100%;
   @media (max-width: 425px) {
     position: relative; // set position relative in order to see user section when modal on phone is opened
     z-index: 21;
@@ -32,7 +33,6 @@ export const Name = styled.button`
   text-align: right;
   letter-spacing: 0.04em;
   background: transparent;
-
   text-transform: uppercase;
   color: ${p => p.theme.colors.black};
   @media (min-width: 426px) and (max-width: 1023px) {

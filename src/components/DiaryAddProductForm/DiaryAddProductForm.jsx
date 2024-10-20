@@ -16,10 +16,11 @@ import AddIcon from '../../images/svg/add.svg';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useGetEntry } from '../../hooks/useGetEntry';
 import { searchProducts } from '../../redux/product/productSlice';
 import { fetchProducts } from '../../redux/product/operations';
 import { useSearch } from '../../hooks/useSearch';
+import { DiarySearchItem } from 'components/DiarySearch/DiarySearchItem';
+import { addEntry } from '../../redux/entry/operation';
 
 const schema = yup.object().shape({
 //   productName: yup.string().required('Name is required field'),
@@ -42,9 +43,6 @@ const throttle = (fn, delay) => {
 }
 
 export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
-  // const { user } = useAuth();
-  // const token = user.token;
-const {entry} = useGetEntry();
   const navigate = useNavigate();	
   const location = useLocation();
   const dispatch = useDispatch();
@@ -58,7 +56,8 @@ const {entry} = useGetEntry();
     productWeight: '',
   };
   const [searchValue, setSearchValue] = useState([]);
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const [productDetails, setProductDetails] = useState('');
   // const userInfo = useSelector(user);
 
 useEffect(() => {
@@ -84,64 +83,26 @@ const throttledSearch = throttle((search) => {
 	}
 }, 1500);
 
-  // const search = async value => {
-  //   try {
-  //     const result = await apiGetSearchProducts(value);
-  //     setSearchProducts(result);
-  //   } catch (error) {
-  //     setSearchProducts([]);
-  //   }
-  // };
-
-  // const handleSubmit = async (values, { resetForm }) => {
-  //   schema.validate(values);
-  //   const { productName, productWeight } = values;
-  //   const body = { productName, productWeight: parseInt(productWeight) };
-  //   try {
-  //     const result = await apiAddMyProduct(body, token);
-  //     if (result.length > 0) {
-  //       dispatch(setProducts(result));
-  //     } else {
-  //       dispatch(setProducts([]));
-  //     }
-  //   } catch (error) {
-  //     alert('Oops.. Product not found!');
-  //   }
-  //   mobile && onClose();
-  //   resetForm();
-  // };
-
-  // const handleChange = e => {
-  //   const productName = e.target.value;
-  //   if (e.target.name === 'productName') {
-  //     if (productName !== '' && productName.length > 1) {
-  //       search(productName);
-  //       setVisible(true);
-  //     } else {
-  //       setVisible(false);
-  //       setSearchProducts([]);
-  //     }
-  //   }
-  // };
-
-  // const handleClick = (setFieldValue, title) => {
-  //   setVisible(false);
-  //   setFieldValue('productName', title);
-  // };
+const handleSubmit = (values) => {
+	const { productWeight } = values;
+	const grams = productWeight;
+	const data = { ...productDetails, grams }
+	dispatch(addEntry(data));
+}
 
   return (
     <Box style={{position:'relative'}}>
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         validationSchema={schema}
       >
         {({ formikProps, setFieldValue }) => (
           <Box>
             <FormWrapper>
               <NameInput
-                type="productName"
+                type="text"
                 placeholder="Enter product name"
                 name="productName"
                 autoComplete="off"
@@ -150,7 +111,7 @@ const throttledSearch = throttle((search) => {
               />
               <ErrorMessage name="productName" component={NameError} />
               <GramsInput
-                type="productWeight"
+                type="number"
                 placeholder="Grams"
                 name="productWeight"
                 autoComplete="off"
@@ -164,36 +125,24 @@ const throttledSearch = throttle((search) => {
                 </Button>
               )}
             </FormWrapper>
-            <SearchBox>
-              {/* {searchProducts !== '' &&
-                searchProducts.length !== 0 &&
-                searchProducts.map(product => {
-                  if (
-                    userInfo.notAllowedProductsAll.find(
-                      el => el === product.title
-                    )
-                  ) {
-                    return (
-                      <SearchItemNotRecommended
-                        key={product._id}
-                        onClick={() =>
-                          handleClick(setFieldValue, product.title)
-                        }
-                      >
-                        {product.title}
-                      </SearchItemNotRecommended>
-                    );
-                  }
-                  return (
-                    <SearchItem
-                      key={product._id}
-                      onClick={() => handleClick(setFieldValue, product.title)}
-                    >
-                      {product.title}
-                    </SearchItem>
-                  );
-                })} */}
-            </SearchBox>
+				{ visible &&
+					<SearchBox>
+						{ products && products.length > 0 ? (
+						 products.map(product => (
+							<DiarySearchItem 
+								key={product._id}
+								product={product}
+								setSearchValue={setSearchValue}
+								setVisible={setVisible}
+								setProductDetails={setProductDetails}
+							/>
+						)
+						)) : (
+							<div>Nothing to show</div>
+
+						)}
+					</SearchBox>
+				}
           </Box>
         )}
       </Formik>

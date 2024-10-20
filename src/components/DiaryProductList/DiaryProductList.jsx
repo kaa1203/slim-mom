@@ -1,34 +1,10 @@
-// import { getToken } from 'redux/authSelectors';
-// import { getProducts, selectDate } from 'redux/productsSelectors';
-// import { setProducts } from 'redux/productsSlice';
 import { List } from '../DiaryProductList/DiaryProductlist.styled';
-// import { ThemeContext } from 'components/Context/Context';
-// import { apiListMyProducts } from 'services/api/api';
+import { useGetEntry } from '../../hooks/useGetEntry';
+import { DiaryProductsListItem } from 'components/DiaryProductListItem/DiaryProductListItem';
 
 export const DiaryProductsList = () => {
-  // const { isChristmas } = useContext(ThemeContext);
-  // const mobile = useMediaQuery({ query: '(max-width: 426px)' });
-  // const token = useSelector(getToken);
-  // const date = useSelector(selectDate);
-  // const dispatch = useDispatch();
-  // const { items } = useSearch();
-  // const products = items;
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     try {
-  //       const result = await apiListMyProducts(date, token)
-  //       if (result.length > 0) {
-  //         dispatch(setProducts(result[0].productInfo));
-  //       } else {
-  //         dispatch(setProducts([]));
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getProducts();
-  // }, [date, dispatch, token]);
-
+  const { entry } = useGetEntry();
+  
   return (
     <List >
       {/* className={products.length > 4 ? null : "hidden"} */}
@@ -69,6 +45,17 @@ export const DiaryProductsList = () => {
           />}
         </NoProductsContainer>
       )} */}
+		{
+			entry.map(product => {
+				 return (
+					<DiaryProductsListItem
+					  key={product._id}
+					  _id={product._id}
+					  product={product.food}
+					/>
+				 );
+			  })
+		}
     </List>
   );
 };

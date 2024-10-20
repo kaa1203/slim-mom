@@ -1,32 +1,22 @@
 import { Icon, Item } from '../DiaryProductListItem/DiaryProductListItem.styled';
 import CrossIcon from '../../images/svg/cross.svg';
-// import { getToken } from "redux/authSelectors";
 import { useDispatch } from 'react-redux';
-import { useGetEntry } from '../../hooks/useGetEntry';
-// import { setProducts } from "redux/productsSlice";
-// import { apiDeleteMyProduct } from "services/api/api";
+import { deleteEntry } from '../../redux/entry/operation';
 
-export const DiaryProductsListItem = ({id, name, grams, calories}) => {
-  // const date = useSelector(selectDate)
-  const { items } = useGetEntry();
-  console.log(items);
-  const dispatch = useDispatch()
-  // const token = useSelector(getToken)
-  // const handleDelete = async (id) => {
-  //   try {
-  //     const result = await apiDeleteMyProduct(id, token, date)
-  //     dispatch(setProducts(result))
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+export const DiaryProductsListItem = ({_id, product}) => {
+  const { title, grams, calories } = product;
+  const dispatch = useDispatch();
+  
+  const handleDelete = () => {
+    dispatch(deleteEntry(_id));	
+  }	
 
   return (
     <Item>
-      <p className="products-item-name">{name}</p>
+      <p className="products-item-name">{title}</p>
       <p className="products-item-grams">{grams} g</p>
       <p className="products-item-calories">{calories} <span>kcal</span></p>
-      <Icon src={CrossIcon} alt="delete product" onClick/>
+      <Icon src={CrossIcon} alt="delete product" onClick={handleDelete}/>
     </Item>
   )
 }

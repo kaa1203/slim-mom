@@ -18,8 +18,6 @@ const Header = () => {
   const [openNavigation, setOpenNavigation] = useState(false);
   const { user } = useAuth();
   const userName = user?.name || '';
-  
-  const { pathname } = useLocation();
 
   const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });

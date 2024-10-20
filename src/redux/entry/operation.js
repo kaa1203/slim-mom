@@ -81,6 +81,7 @@ export const addEntry = createAsyncThunk(
 				}
 			);
 			setAuthHeader(res.data.token);
+			return res.data;
 		} catch (e) {
 			return thunkAPI.rejectWithValue(e.response.status);
 		}
@@ -88,13 +89,13 @@ export const addEntry = createAsyncThunk(
 )
 
 export const deleteEntry = createAsyncThunk(
+   'entries/deleteEntry',
 	async(_id, thunkAPI) => {
 		try {
 			const state = thunkAPI.getState();
 			const token = state.auth.user.user.token;
 
-			const res = await axios.post('entries/',
-				{ _id	},
+			await axios.delete(`entries/${_id}`,
 				{
 					headers: {
 						'Authorization': `Bearer ${token}`,
@@ -102,7 +103,7 @@ export const deleteEntry = createAsyncThunk(
 					}
 				}
 			);
-			return res.data();
+			return _id;
 		} catch (e) {
 			return thunkAPI.rejectWithValue(e.response.status);
 		}

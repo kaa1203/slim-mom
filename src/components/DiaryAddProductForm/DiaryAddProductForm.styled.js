@@ -159,11 +159,13 @@ export const FormWrapper = styled(Form)`
 `;
 
 export const SearchBox = styled.ul`
-  display: none;
+  display: block;
   position: absolute;
   background-color: white;
   width: 450px;
   box-shadow: 5px 4px 9px -3px rgba(0,0,0,0.53);
+  overflow: auto;
+  height: 150px;
   &.visible {
     display: block;
   }

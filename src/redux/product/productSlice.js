@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchProducts } from "./operations.js";
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchProducts } from './operations.js';
 
 const handleOnPending = state => {
 	state.isLoading = true;

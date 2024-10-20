@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const BASE_URL = 'https://slim-mom-api.onrender.com/api/';
 
@@ -20,7 +20,7 @@ export const fetchProducts = createAsyncThunk(
 					'Authorization': `Bearer ${token}`,
 					'Content-Type': 'application/json',
 				},
-				params: q 
+				params: q
 			});
 			setAuthHeader(res.data.token);
 			return res.data;

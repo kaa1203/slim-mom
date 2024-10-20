@@ -4,15 +4,13 @@ import { useMediaQuery } from 'react-responsive';
 import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
 import {
-  NameInput,
-  GramsInput,
   Button,
   FormWrapper,
-  SearchBox,
-  SearchItem,
-  NameError,
   GramsError,
-  SearchItemNotRecommended,
+  GramsInput,
+  NameError,
+  NameInput,
+  SearchBox,
 } from './DiaryAddProductForm.styled';
 import AddIcon from '../../images/svg/add.svg';
 import { useEffect, useState } from 'react';
@@ -126,13 +124,13 @@ const throttledSearch = throttle((search) => {
   //   }
   // };
 
-  const handleClick = (setFieldValue, title) => {
-    setVisible(false);
-    setFieldValue('productName', title);
-  };
+  // const handleClick = (setFieldValue, title) => {
+  //   setVisible(false);
+  //   setFieldValue('productName', title);
+  // };
 
   return (
-    <Box position="relative" my="40px">
+    <Box style={{position:'relative'}}>
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
@@ -141,7 +139,7 @@ const throttledSearch = throttle((search) => {
       >
         {({ formikProps, setFieldValue }) => (
           <Box>
-            <FormWrapper >
+            <FormWrapper>
               <NameInput
                 type="productName"
                 placeholder="Enter product name"
@@ -166,7 +164,7 @@ const throttledSearch = throttle((search) => {
                 </Button>
               )}
             </FormWrapper>
-            <SearchBox className={visible ? 'visible' : null}>
+            <SearchBox>
               {/* {searchProducts !== '' &&
                 searchProducts.length !== 0 &&
                 searchProducts.map(product => {

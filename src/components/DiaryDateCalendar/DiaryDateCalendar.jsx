@@ -1,11 +1,11 @@
-import React, { useState, forwardRef } from "react";
-import { DatePickerWrapper, Icon } from "./DiaryDateCalendar.styled";
-import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
-import CalendarIcon from "../../images/svg/calendar.svg"
-import { useDispatch } from "react-redux";
-import { fetchEntriesByDate } from "../../redux/entry/operation";
-import moment from "moment";
+import React, { forwardRef, useState } from 'react';
+import { DatePickerWrapper, Icon } from './DiaryDateCalendar.styled';
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
+import CalendarIcon from '../../images/svg/calendar.svg';
+import { useDispatch } from 'react-redux';
+import { fetchEntriesByDate } from '../../redux/entry/operation';
+import moment from 'moment';
 
 export const DiaryDateCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -14,9 +14,9 @@ export const DiaryDateCalendar = () => {
   const handleChange = (date) => {
     const formattedDate = moment(date).format("YYYY-MM-DD")
     setSelectedDate(date);
-    dispatch(fetchEntriesByDate(formattedDate)) 
+    dispatch(fetchEntriesByDate(formattedDate))
   }
-  
+
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <div>
       <DatePickerWrapper onClick={onClick} ref={ref} id="calendar">
@@ -28,9 +28,9 @@ export const DiaryDateCalendar = () => {
 
   return (
     <div>
-      <DatePicker 
-        selected={selectedDate} 
-        onChange={(date) => handleChange(date)} 
+      <DatePicker
+        selected={selectedDate}
+        onChange={(date) => handleChange(date)}
         dateFormat="dd.MM.yyyy"
         customInput={<ExampleCustomInput />}
         maxDate={new Date()}

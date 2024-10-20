@@ -1,8 +1,8 @@
-import { Item, Icon } from "../DiaryProductListItem/DiaryProductListItem.styled"
-import CrossIcon from "../../images/svg/cross.svg"
+import { Icon, Item } from '../DiaryProductListItem/DiaryProductListItem.styled';
+import CrossIcon from '../../images/svg/cross.svg';
 // import { getToken } from "redux/authSelectors";
-import { useDispatch, useSelector } from "react-redux";
-import { useGetEntry } from "../../hooks/useGetEntry";
+import { useDispatch } from 'react-redux';
+import { useGetEntry } from '../../hooks/useGetEntry';
 // import { setProducts } from "redux/productsSlice";
 // import { apiDeleteMyProduct } from "services/api/api";
 

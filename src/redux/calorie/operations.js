@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const BASE_URL = 'https://slim-mom-api.onrender.com/api/';
 
@@ -27,11 +27,11 @@ export const caloriePublic = createAsyncThunk(
 
       // If validation passes, proceed with the API request
       const res = await axios.post('calorieIntake/public', {
-        height, 
-        currentWeight, 
-        age, 
-        desiredWeight, 
-        bloodType 
+        height,
+        currentWeight,
+        age,
+        desiredWeight,
+        bloodType
       });
       setAuthHeader(res.data.token);
       return res.data;
@@ -39,7 +39,7 @@ export const caloriePublic = createAsyncThunk(
       if (e.message === 'All fields are required') {
         return thunkAPI.rejectWithValue(e.message); // Reject if validation fails
       }
-      return thunkAPI.rejectWithValue(e.response?.status || 'Unknown error');
+      return thunkAPI.rejectWithValue(e.response?.data?.message || 'Unknown error');
     }
   }
 );
@@ -57,11 +57,11 @@ export const caloriePrivate = createAsyncThunk(
       // If validation passes, proceed with the API request
       const res = await axios.post('calorieIntake/private',
         {
-          height, 
-          currentWeight, 
-          age, 
-          desiredWeight, 
-          bloodType 
+          height,
+          currentWeight,
+          age,
+          desiredWeight,
+          bloodType
         },
         {
           headers: {
@@ -76,7 +76,7 @@ export const caloriePrivate = createAsyncThunk(
       if (e.message === 'All fields are required') {
         return thunkAPI.rejectWithValue(e.message); // Reject if validation fails
       }
-      return thunkAPI.rejectWithValue(e.response?.status || 'Unknown error');
+      return thunkAPI.rejectWithValue(e.response?.data?.message || 'Unknown error');
     }
   }
 );

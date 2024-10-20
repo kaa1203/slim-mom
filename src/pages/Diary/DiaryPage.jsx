@@ -1,10 +1,12 @@
-import { Wrapper, WrapperAll } from '../../components/DiaryPage/DiaryPage.styled';
+import {
+  Wrapper,
+  WrapperAll,
+} from '../../components/DiaryPage/DiaryPage.styled';
 import { DiaryAddProductForm } from 'components/DiaryAddProductForm/DiaryAddProductForm';
 import { DiaryDateCalendar } from '../../components/DiaryDateCalendar/DiaryDateCalendar';
 import { DiaryProductsList } from '../../components/DiaryProductList/DiaryProductList';
 import { RightSideBar } from 'components/RightSideBar/RightSideBar';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { DiaryModal } from 'components/DiaryModal/DiaryModal';
 import { useMediaQuery } from 'react-responsive';
 import { Button } from 'components/DiaryPage/DiaryPage.styled';
@@ -32,7 +34,7 @@ const DiaryPage = () => {
       <Wrapper>
         <DiaryDateCalendar />
         {!mobile && <DiaryAddProductForm />}
-        <Box textAlign="center">
+        <Box style={{textAlign:'center'}}>
           <DiaryProductsList />
           {mobile && (
             <Button onClick={() => onModalOpen()}>

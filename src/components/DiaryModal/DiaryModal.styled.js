@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -29,9 +29,9 @@ export const ModalWrapper = styled.div`
     margin-top: 40px;
     margin-bottom: 80px;
     flex-wrap: wrap;
-    
+
     background-color: #fff;
-    text-align: center; 
+    text-align: center;
     @media (max-width: 426px) {
             height: 100vh;
             overflow: hidden;
@@ -43,11 +43,11 @@ export const ModalWrapper = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
         max-width: 594px;
-       
+
         max-height: 573px;
     }
         @media (min-width: 1023px) {
             max-width: 690px;
-            
+
         }
 `;

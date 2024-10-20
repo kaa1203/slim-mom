@@ -1,8 +1,8 @@
 // ThemeProviderWrapper.js
-import React, { useState, useMemo } from "react";
-import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "./themes"; // Import themes
-import ThemeToggle from "./ThemeToggle"; // Import ThemeToggle component
+import React, { useMemo, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { darkTheme, lightTheme } from './themes'; // Import themes
+import ThemeToggle from './ThemeToggle'; // Import ThemeToggle component
 
 const ThemeProviderWrapper = ({ children }) => {
   const [theme, setTheme] = useState("light"); // State to handle theme

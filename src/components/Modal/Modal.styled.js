@@ -13,6 +13,10 @@ export const Overlay = styled.div`
   align-items: center;
   background-color: rgba(33, 33, 33, 0.12);
   z-index: 1200;
+
+  @media (max-width: 767px) {
+    top: 85px;
+  }
 `;
 
 export const ModalWindow = styled.div`
@@ -28,7 +32,7 @@ export const ModalWindow = styled.div`
   height: 100vh;
   border-radius: 5px;
   @media (max-width: 767px) {
-    top: 470px;
+    top: 333px;
     border-radius: 0px;
     box-shadow: none;
   }
@@ -40,6 +44,16 @@ export const ModalWindow = styled.div`
     height: 572px;
   }
 `;
+
+export const ErrorWindow = styled(ModalWindow)`
+  height: auto;
+  top: 30%;
+  padding: 10px;
+  text-align: center;
+  width: calc(100% - 20px);
+  color: var(--orange);
+  font-weight: bold;
+`
 
 export const ButtonClose = styled(MdClose)`
   cursor: pointer;

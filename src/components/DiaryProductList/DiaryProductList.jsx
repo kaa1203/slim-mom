@@ -4,9 +4,9 @@ import { DiaryProductsListItem } from 'components/DiaryProductListItem/DiaryProd
 
 export const DiaryProductsList = () => {
   const { entry } = useGetEntry();
-  
+
   return (
-    <List >
+    <List>
       {/* className={products.length > 4 ? null : "hidden"} */}
       {/* {products.length !== 0 ? (
         products.map(product => {
@@ -45,17 +45,18 @@ export const DiaryProductsList = () => {
           />}
         </NoProductsContainer>
       )} */}
-		{
-			entry.map(product => {
-				 return (
-					<DiaryProductsListItem
-					  key={product._id}
-					  _id={product._id}
-					  product={product.food}
-					/>
-				 );
-			  })
-		}
+      {entry
+        .slice()
+        .reverse()
+        .map(product => {
+          return (
+            <DiaryProductsListItem
+              key={product._id}
+              _id={product._id}
+              product={product.food}
+            />
+          );
+        })}
     </List>
   );
 };

@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 export const NameInput = styled(Field)`
   border: none;
-  width: 280px;
+  width: 80vw;
+  max-width: 280px;
   margin-bottom: 32px;
   padding-bottom: 8px;
   border-bottom: ${p => p.theme.borders.normal};
@@ -13,6 +14,7 @@ export const NameInput = styled(Field)`
   color: ${p => p.theme.colors.black};
   background-color: transparent;
   letter-spacing: 0.04em;
+
   &::placeholder {
     color: ${p => p.theme.colors.gray};
     opacity: 1;
@@ -23,11 +25,13 @@ export const NameInput = styled(Field)`
 
   @media (min-width: 426px) and (max-width: 1023px) {
     margin-right: 12px;
-    width: 240px;
+    width: 60vw;
+    max-width: 240px;
     margin-bottom: 0px;
   }
   @media (min-width: 1024px) {
-    width: 240px;
+    width: 60vw;
+    max-width: 240px;
     margin-right: 48px;
     margin-bottom: 0px;
   }
@@ -36,7 +40,8 @@ export const NameInput = styled(Field)`
 export const GramsInput = styled(Field)`
   text-align: left;
   border: none;
-  width: 280px;
+  width: 80vw;
+  max-width: 280px;
   margin-bottom: 60px;
   padding-bottom: 8px;
   border-bottom: ${p => p.theme.borders.normal};
@@ -45,8 +50,8 @@ export const GramsInput = styled(Field)`
   font-size: ${p => p.theme.fontSizes[0]};
   color: ${p => p.theme.colors.black};
   background-color: transparent;
-
   letter-spacing: 0.04em;
+
   &::placeholder {
     color: ${p => p.theme.colors.gray};
     opacity: 1;
@@ -57,13 +62,15 @@ export const GramsInput = styled(Field)`
 
   @media (min-width: 426px) and (max-width: 1023px) {
     text-align: right;
-    width: 107px;
+    width: 40vw;
+    max-width: 107px;
     margin-bottom: 0px;
     margin-right: 8px;
   }
   @media (min-width: 1024px) {
     text-align: right;
-    width: 107px;
+    width: 40vw;
+    max-width: 107px;
     margin-bottom: 0px;
     margin-right: 60px;
   }
@@ -80,11 +87,12 @@ export const NameError = styled.div`
   background-color: red;
   padding: 5px;
   border-radius: 5px;
-  width: 240px;
+  width: 80vw;
+  max-width: 240px;
+
   @media (min-width: 426px) and (max-width: 1023px) {
     left: 0;
     top: 55px;
-
     text-align: left;
   }
   @media (min-width: 1024px) {
@@ -104,21 +112,24 @@ export const GramsError = styled.div`
   background-color: red;
   padding: 5px;
   border-radius: 5px;
+
   @media (min-width: 426px) and (max-width: 1023px) {
     top: 55px;
     right: 200px;
-    width: 107px;
+    width: 40vw;
+    max-width: 107px;
   }
   @media (min-width: 1024px) {
     top: 55px;
     right: 207px;
-    width: 107px;
+    width: 40vw;
+    max-width: 107px;
   }
 `;
 
 export const Button = styled.button`
   border-radius: 30px;
-  padding: 13px 76px;
+  padding: 13px 15vw;
   border: ${p => p.theme.borders.none};
   font-family: ${p => p.theme.fonts.body};
   line-height: ${p => p.theme.lineHeights.body};
@@ -150,7 +161,7 @@ export const FormWrapper = styled(Form)`
 
   @media (min-width: 426px) and (max-width: 1023px) {
     display: flex;
-    max-width: 503px;
+    max-width: 90vw;
     justify-content: space-between;
   }
   @media (min-width: 1024px) {
@@ -162,14 +173,16 @@ export const SearchBox = styled.ul`
   display: block;
   position: absolute;
   background-color: white;
-  width: 450px;
-  box-shadow: 5px 4px 9px -3px rgba(0,0,0,0.53);
+  width: 90vw;
+  max-width: 450px;
+  box-shadow: 5px 4px 9px -3px rgba(0, 0, 0, 0.53);
   overflow: auto;
   height: 150px;
   &.visible {
     display: block;
   }
-  @media(max-width: 425px) {
+
+  @media (max-width: 425px) {
     top: 40px;
   }
 `;
@@ -185,20 +198,20 @@ export const SearchItem = styled.li`
 `;
 
 export const SearchItemNotRecommended = styled.li`
-cursor: pointer;
-padding: 5px 10px;
-font-family: ${p => p.theme.fonts.body};
-border-bottom: ${p => p.theme.borders.normal};
-background-color: #f5503b;
-color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-family: ${p => p.theme.fonts.body};
+  border-bottom: ${p => p.theme.borders.normal};
+  background-color: #f5503b;
+  color: white;
 
-&:hover {
-  background-color: #bf3e2e;
-}
+  &:hover {
+    background-color: #bf3e2e;
+  }
 
-&::after {
-  content: 'Not recommended';
-  font-size: 10px;
-  margin-left: 10px;
-}
-`
+  &::after {
+    content: 'Not recommended';
+    font-size: 10px;
+    margin-left: 10px;
+  }
+`;

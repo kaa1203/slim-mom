@@ -1,8 +1,15 @@
-import { Box } from 'components/Box';
-import React from 'react';
-import { useMediaQuery } from 'react-responsive';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import { ErrorMessage, Formik } from 'formik';
 import * as yup from 'yup';
+import { useMediaQuery } from 'react-responsive';
+import { searchProducts } from '../../redux/product/productSlice';
+import { fetchProducts } from '../../redux/product/operations';
+import { addEntry } from '../../redux/entry/operation';
+import { useSearch } from '../../hooks/useSearch';
+import { Box } from 'components/Box';
+import { DiarySearchItem } from 'components/DiarySearch/DiarySearchItem';
 import {
   Button,
   FormWrapper,
@@ -13,17 +20,33 @@ import {
   SearchBox,
 } from './DiaryAddProductForm.styled';
 import AddIcon from '../../images/svg/add.svg';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { searchProducts } from '../../redux/product/productSlice';
-import { fetchProducts } from '../../redux/product/operations';
-import { useSearch } from '../../hooks/useSearch';
-import { DiarySearchItem } from 'components/DiarySearch/DiarySearchItem';
-import { addEntry } from '../../redux/entry/operation';
+
+// Pop-up message component
+const PopupMessage = ({ message, onClose }) => {
+  useEffect(() => {
+    const timer = setTimeout(onClose, 3000); // Hide after 3 seconds
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <Box
+      style={{
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        backgroundColor: '#28a745',
+        color: 'white',
+        padding: '10px 20px',
+        borderRadius: '8px',
+        zIndex: 1000,
+      }}
+    >
+      {message}
+    </Box>
+  );
+};
 
 const schema = yup.object().shape({
-//   productName: yup.string().required('Name is required field'),
   productWeight: yup
     .number('Grams must be a number')
     .typeError('Grams must be a number')
@@ -31,74 +54,67 @@ const schema = yup.object().shape({
 });
 
 const throttle = (fn, delay) => {
-	let lastCall = 0;
-	return function (...args) {
-	  const now = new Date().getTime();
-	  if (now - lastCall < delay) {
-		 return;
-	  }
-	  lastCall = now;
-	  return fn(...args);
-	};
-}
+  let lastCall = 0;
+  return function (...args) {
+    const now = new Date().getTime();
+    if (now - lastCall < delay) {
+      return;
+    }
+    lastCall = now;
+    return fn(...args);
+  };
+};
 
 export const DiaryAddProductForm = ({ onClose, isModalOpened }) => {
-  const navigate = useNavigate();	
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const location = useLocation();
   const dispatch = useDispatch();
   const { products } = useSearch();
 
-  const getQueryParams = () => new URLSearchParams(location.search);
-//   const date = useSelector(selectDate);
   const mobile = useMediaQuery({ query: '(max-width: 426px)' });
   const initialValues = {
     productName: '',
     productWeight: '',
   };
-  const [searchValue, setSearchValue] = useState([]);
+
+  const [searchValue, setSearchValue] = useState('');
   const [visible, setVisible] = useState(false);
   const [productDetails, setProductDetails] = useState('');
-  // const userInfo = useSelector(user);
+  const [showPopup, setShowPopup] = useState(false); // State to control popup visibility
 
-useEffect(() => {
-	dispatch(fetchProducts(""));
-}, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchProducts(''));
+  }, [dispatch]);
 
-const handleOnChange = e => {
-	const query = e.target.value;
-	const params = getQueryParams();
+  const handleOnChange = e => {
+    const query = e.target.value;
+    setSearchValue(query);
+    setVisible(query.length > 0);
+    throttledSearch(query);
+  };
 
-	setSearchValue(query);
-	params.set('q', query);
-	navigate({ search: params.toString()});
-	
-	setVisible(query.length > 0);
+  const throttledSearch = throttle(search => {
+    dispatch(searchProducts(search));
+  }, 1500);
 
-	throttledSearch(query);
-};
+  const handleSubmit = values => {
+    const { productWeight } = values;
+    const grams = productWeight;
+    const data = { ...productDetails, grams };
+    dispatch(addEntry(data));
 
-const throttledSearch = throttle((search) => {
-	if (search !== searchValue) {
-		dispatch(searchProducts(search));
-	}
-}, 1500);
-
-const handleSubmit = (values) => {
-	const { productWeight } = values;
-	const grams = productWeight;
-	const data = { ...productDetails, grams }
-	dispatch(addEntry(data));
-}
+    // Show the popup after adding an entry
+    setShowPopup(true);
+  };
 
   return (
-    <Box style={{position:'relative'}}>
+    <Box style={{ position: 'relative' }}>
       <Formik
-        enableReinitialize={true}
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={schema}
       >
-        {({ formikProps, setFieldValue }) => (
+        {() => (
           <Box>
             <FormWrapper>
               <NameInput
@@ -106,8 +122,8 @@ const handleSubmit = (values) => {
                 placeholder="Enter product name"
                 name="productName"
                 autoComplete="off"
-					 value={ searchValue }
-					 onChange={handleOnChange}
+                value={searchValue}
+                onChange={handleOnChange}
               />
               <ErrorMessage name="productName" component={NameError} />
               <GramsInput
@@ -125,27 +141,42 @@ const handleSubmit = (values) => {
                 </Button>
               )}
             </FormWrapper>
-				{ visible &&
-					<SearchBox>
-						{ products && products.length > 0 ? (
-						 products.map(product => (
-							<DiarySearchItem 
-								key={product._id}
-								product={product}
-								setSearchValue={setSearchValue}
-								setVisible={setVisible}
-								setProductDetails={setProductDetails}
-							/>
-						)
-						)) : (
-							<div>Nothing to show</div>
+            {visible && (
+              <SearchBox>
+                {products && products.length > 0 ? (
+                  products.map(product => {
+                    const isHighlighted =
+                      searchValue.toLowerCase() ===
+                      product?.title?.toLowerCase(); // Highlight matching product
 
-						)}
-					</SearchBox>
-				}
+                    return (
+                      <DiarySearchItem
+                        key={product._id}
+                        product={product}
+                        setSearchValue={setSearchValue}
+                        setVisible={setVisible}
+                        setProductDetails={setProductDetails}
+                        style={{
+                          backgroundColor: isHighlighted ? '#ffeb3b' : 'grey',
+                        }} // Apply different background if matched
+                      />
+                    );
+                  })
+                ) : (
+                  <div>Nothing to show</div>
+                )}
+              </SearchBox>
+            )}
           </Box>
         )}
       </Formik>
+
+      {showPopup && (
+        <PopupMessage
+          message="You just added an item"
+          onClose={() => setShowPopup(false)}
+        />
+      )}
     </Box>
   );
 };

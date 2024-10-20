@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     padding: 80px 0px 80px 32px;
     display: flex;
     background-repeat: no-repeat;
-    background-position: bottom 0px left 385px;
+    // background-position: bottom 0px left 385px;
     background-size: auto;
   }
   @media (min-width: 1280px) and (max-width: 1440px) {

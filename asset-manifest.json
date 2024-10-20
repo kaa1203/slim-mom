@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/slim-mom/static/css/main.2a116fcc.css",
-    "main.js": "/slim-mom/static/js/main.112b9db4.js",
+    "main.js": "/slim-mom/static/js/main.1d62119f.js",
     "static/media/Strawberry@2x.png": "/slim-mom/static/media/Strawberry@2x.810e8754ff3a5ece844c.png",
     "static/media/banana@2x.png": "/slim-mom/static/media/banana@2x.c9bae4c1d788895e7e32.png",
     "static/media/leaves@2x.png": "/slim-mom/static/media/leaves@2x.0ca97f526efa230ccff5.png",
@@ -13,12 +13,13 @@
     "static/media/logoDesktop@2x.png": "/slim-mom/static/media/logoDesktop@2x.c1f856addb611cbab936.png",
     "index.html": "/slim-mom/index.html",
     "static/media/calendar.svg": "/slim-mom/static/media/calendar.f07abe41ca1bac88f7e6c38064355356.svg",
+    "static/media/cross.svg": "/slim-mom/static/media/cross.8cdb920ca8331504fc3379915d48c780.svg",
     "static/media/add.svg": "/slim-mom/static/media/add.abbad4ece4830b88ccd984afbf9c2a1f.svg",
     "main.2a116fcc.css.map": "/slim-mom/static/css/main.2a116fcc.css.map",
-    "main.112b9db4.js.map": "/slim-mom/static/js/main.112b9db4.js.map"
+    "main.1d62119f.js.map": "/slim-mom/static/js/main.1d62119f.js.map"
   },
   "entrypoints": [
     "static/css/main.2a116fcc.css",
-    "static/js/main.112b9db4.js"
+    "static/js/main.1d62119f.js"
   ]
 }

@@ -11,7 +11,7 @@ export const RightSideBar = () => {
 	const now = `${(today.getDate()).toString().padStart(2, '0')}.${(today.getMonth() + 1).toString().padStart(2, '0')}.${today.getFullYear()}`;
 	const dispatch = useDispatch();
 	
-	const { totalCalories, entry } = useGetEntry();
+	const { totalCalories } = useGetEntry();
 	const { calculation } = useGetCalorieIntake();
 
 	useEffect(() => {

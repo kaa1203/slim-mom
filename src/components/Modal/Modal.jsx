@@ -3,16 +3,12 @@ import { createPortal } from 'react-dom';
 import DailyCalorieIntake from '../DailyCalorieIntake/DailyCalorieIntake';
 import {
   ButtonClose,
-  CloseArrow,
+  CloseArrow, CloseArrowDiv,
   ErrorWindow,
   ModalWindow,
   Overlay,
 } from './Modal.styled';
-// import { Loader } from 'components/Loader/Loader';
 import { LoaderNew } from 'components/LoaderNew/LoaderNew';
-import { useLocation } from 'react-router-dom';
-import { routes } from '../Routes/routes';
-import { useMediaQuery } from 'react-responsive';
 import { selectCalorieState } from '../../redux/calorie/selectors';
 import { useSelector } from 'react-redux';
 
@@ -25,8 +21,6 @@ const Loading = () => (
 );
 
 export const Modal = ({ onClose, children, userParams }) => {
-  const location = useLocation();
-  const isMobile = useMediaQuery({ query: '(max-width: 426px)' });
   const calorie = useSelector(selectCalorieState);
   console.log('userParams', userParams);
   console.log('calorie', calorie);
@@ -62,19 +56,19 @@ export const Modal = ({ onClose, children, userParams }) => {
         ) : (
           <ModalWindow
             onClose={onClose}
-            style={
-              location.pathname === routes.home && isMobile
-                ? { top: '460px' }
-                : null
-            }
+            // style={
+            //   location.pathname === routes.home && isMobile
+            //     ? { top: '460px' }
+            //     : null
+            // }
           >
+            <CloseArrowDiv><CloseArrow size="20px" left="20px" onClick={onClose} /></CloseArrowDiv>
             <DailyCalorieIntake
               backResponse={calorie?.items}
               userParams={userParams}
             />
             {children}
             <ButtonClose type="button" onClick={onClose}></ButtonClose>
-            <CloseArrow size="20px" left="20px" onClick={onClose} />
           </ModalWindow>
         )
       ) : (

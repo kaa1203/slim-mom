@@ -119,15 +119,13 @@ export const StyledLink = styled(NavLink)`
 
     text-transform: uppercase;
     background: transparent;
-    color: ${p => p.theme.colors.black};
+    color: ${p => p.theme.colors.gray};
     text-decoration: none;
 
-    &.active {
-      color: ${p => p.theme.colors.gray};
-    }
+    &.active,
     &:hover,
     &:focus {
-      color: ${p => p.theme.colors.gray};
+      color: ${p => p.theme.colors.black};
     }
   }
 `;

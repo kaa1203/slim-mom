@@ -16,6 +16,12 @@ export const Overlay = styled.div`
 
   @media (max-width: 767px) {
     top: 85px;
+    width: 100%;
+    & + header {
+      position: fixed;
+      background: white;
+      width: 100%;
+    }
   }
 `;
 
@@ -24,7 +30,7 @@ export const ModalWindow = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 672px;
+  max-width: 100%;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background: #ffffff;
@@ -32,11 +38,11 @@ export const ModalWindow = styled.div`
   height: 100vh;
   border-radius: 5px;
   @media (max-width: 767px) {
-    top: 333px;
-    border-radius: 0px;
+    border-radius: 0;
     box-shadow: none;
+    width: 100%;
   }
-  @media (min-width: 767px) {
+  @media (min-width: 768px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,18 +79,25 @@ export const ButtonClose = styled(MdClose)`
   }
 `;
 
+export const CloseArrowDiv = styled.div`
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #e0e0e0;
+  @media (min-width: 768px) {
+    display: none;
+    visibility: hidden;
+  }
+`
+
 export const CloseArrow = styled(FiCornerDownLeft)`
-  position: absolute;
-  top: -30px;
-  left: 20px;
+  //position: absolute;
+  //top: -30px;
+  //left: 20px;
   color: ${p => p.theme.colors.black};
+  cursor: pointer;
   &:hover,
   :focus {
     color: ${p => p.theme.colors.hover};
-  }
-  @media (min-width: 767px) {
-    display: none;
-    visibility: hidden;
   }
 `;
 
